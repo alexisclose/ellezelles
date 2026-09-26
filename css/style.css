@@ -293,7 +293,7 @@ p{margin:0 0 1.1em}
 @keyframes wheel{0%{opacity:0;top:8px}30%{opacity:1}100%{opacity:0;top:22px}}
 
 /* ---------- 9. Intro ---------- */
-.intro{padding-bottom:clamp(28px,3.5vw,44px)}   /* de fototegels volgen meteen */
+.intro{padding-bottom:clamp(44px,5.5vw,72px)}   /* de fototegels volgen meteen */
 .intro p{font-size:1.0625rem;color:var(--text-soft);margin-bottom:2em}
 .intro p:last-child{margin-bottom:0}
 
