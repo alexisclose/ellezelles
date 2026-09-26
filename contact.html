@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=21">
+<link rel="stylesheet" href="css/style.css?v=22">
 </head>
 <body>
 
@@ -103,18 +103,49 @@
     </div>
   </section>
 
-  <!-- ============ 3. CRÈME CTA (zonder beeld) ============ -->
-  <section class="cta cta--plain">
-    <div class="container cta__grid">
-      <div class="cta__body">
-        <h2>Reserveer de woning</h2>
-        <p>Ontdek zonder verder wachten onze kamers en de rest van het huis.</p>
-        <a class="btn btn--teal" href="#">Reserveren</a>
+  <!-- ============ 3. BESCHIKBAARHEID ============ -->
+  <!-- ================================================================
+       De kalender haalt de bezette dagen rechtstreeks uit Google Agenda.
+       Instellen (eenmalig) — zie de uitleg bovenaan blok 6 in js/main.js.
+
+       Voor het dagelijks gebruik:
+         - Open Google Agenda en kies de agenda 'Ellezelles'
+         - Maak een evenement van de hele dag over de geboekte nachten
+           (aankomst t.e.m. de laatste nacht; de vertrekdag blijft vrij)
+         - Bij het volgende bezoek aan de site staat het erop.
+           Evenement wissen = dagen weer vrij.
+       ================================================================ -->
+  <section class="section section--grey" id="beschikbaarheid">
+    <div class="container">
+      <h2 class="section__title">Beschikbaarheid</h2>
+
+      <div class="kalender" id="kalender">
+        <div class="kalender__balk">
+          <button class="kalender__pijl" type="button" data-stap="-1" aria-label="Vorige maand">&larr;</button>
+          <ul class="kalender__legende">
+            <li><span class="kalender__stip"></span> Vrij</li>
+            <li><span class="kalender__stip kalender__stip--bezet"></span> Bezet</li>
+          </ul>
+          <button class="kalender__pijl" type="button" data-stap="1" aria-label="Volgende maand">&rarr;</button>
+        </div>
+        <div class="kalender__maanden" id="kalendermaanden"></div>
+        <p class="kalender__melding" id="kalendermelding" role="status">Beschikbaarheid laden&hellip;</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 4. CONTACTFORMULIER ============ -->
+  <!-- ============ 4. CRÈME CTA (zonder beeld) ============ -->
+  <section class="cta cta--plain">
+    <div class="container cta__grid">
+      <div class="cta__body">
+        <h2>Reserveer de woning</h2>
+        <p>Staan uw data vrij? Laat het ons weten via het formulier hieronder.</p>
+        <a class="btn btn--teal" href="#contactform">Reserveren</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. CONTACTFORMULIER ============ -->
   <section class="section section--tight">
     <div class="container">
       <div class="formulier">
@@ -228,6 +259,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=21"></script>
+<script src="js/main.js?v=22"></script>
 </body>
 </html>
