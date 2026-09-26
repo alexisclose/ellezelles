@@ -374,6 +374,7 @@ p{margin:0 0 1.1em}
   font-size:clamp(1.25rem,1.8vw,1.7rem);
 }
 .tile:hover img{transform:scale(1.06)}
+.tile img.tile__img--wandelaars{object-position:40% center}   /* brede foto: beide wandelaars in beeld */
 
 /* ---------- 11. Aanbiedingen (donkere band) ---------- */
 .offers{background:var(--dark);color:var(--cream)}
