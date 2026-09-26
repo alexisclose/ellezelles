@@ -296,6 +296,8 @@ p{margin:0 0 1.1em}
 .intro p{font-size:1.0625rem;color:var(--text-soft);margin-bottom:2em}
 
 /* ---------- 9b. Het huis in het kort (iconen) ---------- */
+/* staat vlak onder de hero; de intro eronder zorgt zelf voor de ruimte */
+.kenmerken{padding-bottom:0}
 .kenmerken__lijst{
   display:grid;grid-template-columns:repeat(4,1fr);
   border-top:1px solid var(--border);border-bottom:1px solid var(--border);

@@ -16,7 +16,7 @@
 <!-- ==> ADOBE FONTS: plak hier de regel uit je Adobe-project en zet in
          css/style.css de variabele --font-head op "recoleta".
      <link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css"> -->
-<link rel="stylesheet" href="css/style.css?v=24">
+<link rel="stylesheet" href="css/style.css?v=25">
 </head>
 <body>
 
@@ -83,22 +83,11 @@
         <a class="btn btn--outline" href="over-ons.html">Ontdek de woning</a>
       </div>
     </div>
-    <a class="hero__scroll" href="#intro" aria-label="Naar beneden scrollen"><span></span></a>
+    <a class="hero__scroll" href="#kenmerken" aria-label="Naar beneden scrollen"><span></span></a>
   </section>
 
-  <!-- ============ 4. INTRO ============ -->
-  <section class="section intro" id="intro">
-    <div class="container container--narrow">
-      <h2>Een vakantiewoning in het hart van de Pays des Collines</h2>
-      <p>Overnachten, ontspannen, samenkomen en ontdekken: beleef de streek ten volle vanuit
-         [Naam], een adres om de heuvels van de Vlaamse Ardennen en de Pays des Collines
-         op een rustige manier te ervaren.</p>
-      <a class="btn btn--teal" href="over-ons.html">Ontdek het huis</a>
-    </div>
-  </section>
-
-  <!-- ============ 4b. HET HUIS IN HET KORT (iconen) ============ -->
-  <section class="section section--tight kenmerken" aria-label="Het huis in het kort">
+  <!-- ============ 4. HET HUIS IN HET KORT (iconen) ============ -->
+  <section class="section kenmerken" id="kenmerken" aria-label="Het huis in het kort">
     <div class="container">
       <ul class="kenmerken__lijst">
         <li class="kenmerk">
@@ -126,6 +115,17 @@
           <span class="kenmerk__tekst">Ruime woonkamers</span>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ============ 4b. INTRO ============ -->
+  <section class="section intro" id="intro">
+    <div class="container container--narrow">
+      <h2>Een vakantiewoning in het hart van de Pays des Collines</h2>
+      <p>Overnachten, ontspannen, samenkomen en ontdekken: beleef de streek ten volle vanuit
+         [Naam], een adres om de heuvels van de Vlaamse Ardennen en de Pays des Collines
+         op een rustige manier te ervaren.</p>
+      <a class="btn btn--teal" href="over-ons.html">Ontdek het huis</a>
     </div>
   </section>
 
@@ -163,64 +163,7 @@
     </div>
   </section>
 
-  <!-- ============ 6. AANBIEDINGEN (donkere band + slider) ============ -->
-  <section class="section offers">
-    <div class="container">
-      <div class="offers__head">
-        <h2 class="section__title">Onze aanbiedingen</h2>
-        <div class="slider__nav">
-          <button class="slider__btn" data-dir="-1" aria-label="Vorige">&lsaquo;</button>
-          <button class="slider__btn" data-dir="1" aria-label="Volgende">&rsaquo;</button>
-        </div>
-      </div>
-
-      <div class="carousel offers__track" data-carousel>
-
-          <article class="card card--offer">
-            <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-midweek.jpg" alt="Slaapkamer met rode muur onder de dakspanten"></div>
-            <span class="card__label">VAKANTIEWONING</span>
-            <h3 class="card__title">Midweek Escape</h3>
-            <p class="card__price">Vanaf &euro;90 / nacht / kamer</p>
-            <p class="card__text">Twee nachten doordeweeks, het hele huis voor u alleen.</p>
-            <span class="card__link">Meer weten</span>
-          </article>
-
-          <article class="card card--offer">
-            <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-wandelen.jpg" alt="De tuin en het huis van bovenaf gezien"></div>
-            <span class="card__label">WANDELEN</span>
-            <h3 class="card__title">Wandelarrangement</h3>
-            <p class="card__price">Vanaf &euro;110 / nacht / kamer</p>
-            <p class="card__text">Met picknick en wandelkaart van de streek.</p>
-            <span class="card__link">Meer weten</span>
-          </article>
-
-          <article class="card card--offer">
-            <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-dine.jpg" alt="Eettafel met open keuken erachter"></div>
-            <span class="card__label">DUO</span>
-            <h3 class="card__title">Stay &amp; Dine</h3>
-            <p class="card__price">Vanaf &euro;145 / nacht / kamer</p>
-            <p class="card__text">Overnachting met tafelgerecht van het huis.</p>
-            <span class="card__link">Meer weten</span>
-          </article>
-
-          <article class="card card--offer">
-            <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-wellness.jpg" alt="Het binnenzwembad met zicht op de tuin"></div>
-            <span class="card__label">WELLNESS</span>
-            <h3 class="card__title">Rust &amp; Sauna</h3>
-            <p class="card__price">Vanaf &euro;135 / nacht / kamer</p>
-            <p class="card__text">Priv&eacute;sauna en late check-out.</p>
-            <span class="card__link">Meer weten</span>
-          </article>
-
-      </div>
-
-      <div class="offers__cta">
-        <a class="btn btn--gold" href="#">Bekijk al onze aanbiedingen</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 7. BEELD + TEKST ============ -->
+  <!-- ============ 6. BEELD + TEKST ============ -->
   <section class="section imgtext">
     <div class="container imgtext__grid">
       <div class="imgtext__media"><img loading="lazy" decoding="async" src="images/foto/blok-woonkamer.jpg" alt="Zithoek met boekenkast en open haard"></div>
@@ -238,44 +181,20 @@
     </div>
   </section>
 
-  <!-- ============ 8. VOLGENDE EVENEMENTEN ============ -->
-  <section class="section section--grey">
-    <div class="container">
-      <div class="section__head">
-        <h2 class="section__title">Volgende evenementen</h2>
-        <a class="link-arrow" href="#">Ontdek alle evenementen</a>
+  <!-- ============ 7. SLOT-CTA ============ -->
+  <section class="cta">
+    <div class="container cta__grid">
+      <div class="cta__body">
+        <h2>Overnachten in Ellezelles tijdens uw volgende uitstap</h2>
+        <p>Verblijven bij [Naam] betekent genieten van rust en comfort,
+           en alles ontdekken wat de streek te bieden heeft.</p>
+        <a class="btn btn--teal" href="contact.html#beschikbaarheid">Reserveer uw verblijf</a>
       </div>
-
-      <div class="grid-4">
-        <article class="card">
-          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-salon.jpg" alt="Twee fauteuils voor het raam met zicht op de tuin"></div>
-          <h3 class="card__title">Streekmarkt op het erf</h3>
-          <p class="card__meta">Elke zondag van 5 april tot 18 oktober</p>
-          <a class="card__link" href="#">Meer weten</a>
-        </article>
-        <article class="card">
-          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-tuinraam.jpg" alt="Zicht vanuit de veranda op de tuin"></div>
-          <h3 class="card__title">Heksenwandeling Ellezelles</h3>
-          <p class="card__meta">Van 19 tot 20 september</p>
-          <a class="card__link" href="#">Meer weten</a>
-        </article>
-        <article class="card">
-          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-biljart.jpg" alt="Biljartballen klaargelegd op het laken"></div>
-          <h3 class="card__title">Wijnavond met de buren</h3>
-          <p class="card__meta">Donderdag 1 oktober</p>
-          <a class="card__link" href="#">Meer weten</a>
-        </article>
-        <article class="card">
-          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-cuisine.jpg" alt="Kapstokje met het opschrift Cuisine in de keuken"></div>
-          <h3 class="card__title">Kerst in het huis</h3>
-          <p class="card__meta">23 december</p>
-          <a class="card__link" href="#">Meer weten</a>
-        </article>
-      </div>
+      <div class="cta__media"><img loading="lazy" decoding="async" src="images/foto/breed-cta.jpg" alt="Het huis en de tuin vanuit de lucht"></div>
     </div>
   </section>
 
-  <!-- ============ 9. LAATSTE NIEUWS ============ -->
+  <!-- ============ 8. LAATSTE NIEUWS ============ -->
   <section class="section">
     <div class="container">
       <div class="section__head">
@@ -312,22 +231,9 @@
     </div>
   </section>
 
-  <!-- ============ 10. SLOT-CTA ============ -->
-  <section class="cta">
-    <div class="container cta__grid">
-      <div class="cta__body">
-        <h2>Overnachten in Ellezelles tijdens uw volgende uitstap</h2>
-        <p>Verblijven bij [Naam] betekent genieten van rust en comfort,
-           en alles ontdekken wat de streek te bieden heeft.</p>
-        <a class="btn btn--teal" href="contact.html#beschikbaarheid">Reserveer uw verblijf</a>
-      </div>
-      <div class="cta__media"><img loading="lazy" decoding="async" src="images/foto/breed-cta.jpg" alt="Het huis en de tuin vanuit de lucht"></div>
-    </div>
-  </section>
-
 </main>
 
-<!-- ============ 11. FOOTER ============ -->
+<!-- ============ 9. FOOTER ============ -->
 <footer class="footer">
   <div class="container footer__grid">
 
