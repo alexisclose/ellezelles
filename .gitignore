@@ -1,0 +1,10 @@
+# lokale hulpmiddelen (ontwikkelserver e.d.)
+.claude/
+
+# Windows / OneDrive
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store

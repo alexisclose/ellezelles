@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="FOTO — tegel">
+  <rect width="600" height="800" fill="#24312c"/>
+  <g fill="none" stroke="#EAB668" stroke-width="2" opacity=".45">
+    <path d="M0 0 L600 800 M600 0 L0 800"/>
+    <rect x="1" y="1" width="598" height="798"/>
+  </g>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Georgia, serif" font-size="27" fill="#EAB668" opacity=".8">FOTO — tegel</text>
+</svg>

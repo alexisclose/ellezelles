@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="1000" height="800" role="img" aria-label="FOTO - blok">
+  <rect width="1000" height="800" fill="#2b3a33"/>
+  <g fill="none" stroke="#EAB668" stroke-width="2" opacity=".4">
+    <path d="M0 0 L1000 800 M1000 0 L0 800"/>
+    <rect x="1" y="1" width="998" height="798"/>
+  </g>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, serif" font-size="46" fill="#EAB668" opacity=".8">FOTO</text>
+</svg>

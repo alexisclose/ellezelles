@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact &amp; info — Vakantiewoning [Naam] in Ellezelles</title>
+<meta name="description" content="Contacteer vakantiewoning [Naam] in Ellezelles: adres, telefoon, e-mail en routebeschrijving. Of stuur ons meteen een bericht via het formulier.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=21">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Naar de inhoud</a>
+
+<!-- ============ AANBIEDINGENBALK ============ -->
+<div class="topbar">
+  <div class="topbar__track">
+    <a href="contact.html">Midweek Escape — 2 nachten vanaf &euro;180</a>
+    <a href="contact.html">Wandelarrangement Pays des Collines</a>
+    <a href="contact.html">Cadeaubon vanaf &euro;75</a>
+    <a href="contact.html">Last minute: dit weekend</a>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a class="logo" href="index.html">
+      <span class="logo__mark">&#10022;</span>
+      <span class="logo__text">
+        <strong>Vakantiewoning [Naam]</strong>
+        <em>Ellezelles</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Hoofdnavigatie">
+      <ul class="nav__list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+        <li><a href="de-streek.html">De streek</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li class="nav__cta"><a href="contact.html">Reserveren</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <div class="lang" aria-label="Taal">
+        <a class="is-active" href="#">NL</a>
+        <a href="#">FR</a>
+        <a href="#">EN</a>
+      </div>
+      <a class="btn btn--gold" href="contact.html">Reserveren</a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Navigatie wisselen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+
+<main id="main">
+
+  <!-- ============ 1. PAGINAHERO ============ -->
+  <section class="pagehero">
+    <img class="pagehero__img" src="images/foto/hero-contact.jpg" alt="De tuin van de vakantiewoning met het huis erachter">
+    <div class="pagehero__overlay"></div>
+    <div class="pagehero__content">
+      <h1>Contact</h1>
+    </div>
+  </section>
+
+  <!-- ============ 2. ADRES & GEGEVENS ============ -->
+  <section class="section split">
+    <div class="container">
+      <div class="split__grid">
+        <div class="split__media">
+          <img loading="lazy" decoding="async" src="images/foto/blok-contact.jpg"
+               alt="De vakantiewoning met tuin en zwembadgebouw vanuit de lucht">
+        </div>
+        <div class="split__body">
+          <h2>Vakantiewoning [Naam]</h2>
+
+          <!-- VUL HIER DE ECHTE GEGEVENS IN -->
+          <p class="contactgegevens">
+            [Straat en nummer], 7890 Ellezelles<br>
+            <a href="mailto:info@example.be">info@example.be</a><br>
+            <a href="tel:+3200000000">+32 (0)0 00 00 00</a><br>
+            <span class="btw">BTW BE0000.000.000</span>
+          </p>
+
+          <!-- vervang de zoekterm door het echte adres -->
+          <a class="btn btn--teal"
+             href="https://www.google.com/maps/dir/?api=1&amp;destination=Ellezelles%2C%20Belgi%C3%AB"
+             target="_blank" rel="noopener">Routebeschrijving</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. CRÈME CTA (zonder beeld) ============ -->
+  <section class="cta cta--plain">
+    <div class="container cta__grid">
+      <div class="cta__body">
+        <h2>Reserveer de woning</h2>
+        <p>Ontdek zonder verder wachten onze kamers en de rest van het huis.</p>
+        <a class="btn btn--teal" href="#">Reserveren</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. CONTACTFORMULIER ============ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="formulier">
+
+        <div class="formulier__intro">
+          <h2>Contacteer ons</h2>
+          <p>Vul onderstaand formulier in en we antwoorden u zo volledig mogelijk.</p>
+        </div>
+
+        <!-- ================================================================
+             LET OP — dit formulier verstuurt nog NIETS.
+             Een statische website kan zelf geen e-mail versturen; daar is
+             een verzenddienst voor nodig. De eenvoudigste weg:
+
+               1. Maak gratis een formulier aan op formspree.io
+               2. Zet het action-attribuut hieronder op de URL die je krijgt,
+                  bijvoorbeeld  action="https://formspree.io/f/xxxxxxx"
+               3. Zet  method="post"  en verwijder  novalidate  niet
+               4. Haal in js/main.js het blok 'Contactformulier' weg,
+                  of laat het staan als je de melding wil blijven tonen
+
+             Staat de site op Netlify? Dan volstaat  netlify  als attribuut
+             op het <form>-element en is stap 1 en 2 niet nodig.
+             ================================================================ -->
+        <form class="formulier__form" id="contactform" action="" method="post" novalidate>
+
+          <div class="veldgroep">
+            <div class="veld">
+              <label for="voornaam">Voornaam <span class="verplicht" aria-hidden="true">*</span></label>
+              <input id="voornaam" name="voornaam" type="text" autocomplete="given-name" required>
+            </div>
+            <div class="veld">
+              <label for="naam">Naam <span class="verplicht" aria-hidden="true">*</span></label>
+              <input id="naam" name="naam" type="text" autocomplete="family-name" required>
+            </div>
+
+            <div class="veld veld--breed">
+              <label for="email">E-mailadres <span class="verplicht" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="veld veld--breed">
+              <label for="onderwerp">Onderwerp <span class="verplicht" aria-hidden="true">*</span></label>
+              <input id="onderwerp" name="onderwerp" type="text" required>
+            </div>
+
+            <div class="veld veld--breed">
+              <label for="bericht">Bericht <span class="verplicht" aria-hidden="true">*</span></label>
+              <textarea id="bericht" name="bericht" rows="7" required></textarea>
+            </div>
+          </div>
+
+          <div class="formulier__actie">
+            <button class="btn btn--teal" type="submit">Versturen</button>
+            <p class="formulier__melding" id="formmelding" role="status"></p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__grid">
+
+    <nav class="footer__col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+        <li><a href="de-streek.html">De streek</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li class="nav__cta"><a href="contact.html">Reserveren</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <p>
+        <a href="mailto:info@example.be">info@example.be</a><br>
+        <a href="tel:+3200000000">T. +32 (0)0 00 00 00</a><br>
+        [Straat en nummer]<br>
+        7890 Ellezelles
+      </p>
+    </div>
+
+    <div class="footer__col footer__col--news">
+      <h4>Nieuwsbrief</h4>
+      <p>Op de hoogte blijven van ons nieuws</p>
+      <form class="news-form" onsubmit="return false">
+        <label class="sr-only" for="nieuwsbriefmail">E-mailadres</label>
+        <input id="nieuwsbriefmail" type="email" placeholder="uw@e-mail.be" required>
+        <button class="btn btn--gold" type="submit">Abonneren</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer__bar">
+    <div class="container footer__bar-inner">
+      <span>&copy; <span id="year"></span> Vakantiewoning [Naam] &mdash; Alle rechten voorbehouden</span>
+      <span class="footer__legal">
+        <a href="#">Cookies</a>
+        <a href="#">Juridische vermeldingen</a>
+        <a href="#">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js?v=21"></script>
+</body>
+</html>

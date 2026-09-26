@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vakantiewoning [Naam] — Overnachten in Ellezelles, Pays des Collines</title>
+<meta name="description" content="Vakantiehuis in het hart van de Pays des Collines. Rust, ruimte voor het hele gezelschap en de mooiste wandelingen van de streek voor de deur.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b.
+     Nu: Fraunces (gratis), afgesteld om Recoleta te benaderen.
+     Straks: Recoleta zelf, via Adobe Fonts of een eigen licentie. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- ==> ADOBE FONTS: plak hier de regel uit je Adobe-project en zet in
+         css/style.css de variabele --font-head op "recoleta".
+     <link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css"> -->
+<link rel="stylesheet" href="css/style.css?v=21">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Naar de inhoud</a>
+
+<!-- ============ 1. AANBIEDINGENBALK ============ -->
+<div class="topbar">
+  <div class="topbar__track">
+    <a href="contact.html">Midweek Escape — 2 nachten vanaf &euro;180</a>
+    <a href="contact.html">Wandelarrangement Pays des Collines</a>
+    <a href="contact.html">Cadeaubon vanaf &euro;75</a>
+    <a href="contact.html">Last minute: dit weekend</a>
+  </div>
+</div>
+
+<!-- ============ 2. HEADER ============ -->
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <a class="logo" href="index.html">
+      <span class="logo__mark">&#10022;</span>
+      <span class="logo__text">
+        <strong>Vakantiewoning [Naam]</strong>
+        <em>Ellezelles</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Hoofdnavigatie">
+      <ul class="nav__list">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+        <li><a href="de-streek.html">De streek</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav__cta"><a href="contact.html">Reserveren</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <div class="lang" aria-label="Taal">
+        <a class="is-active" href="#">NL</a>
+        <a href="#">FR</a>
+        <a href="#">EN</a>
+      </div>
+      <a class="btn btn--gold" href="contact.html">Reserveren</a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Navigatie wisselen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ 3. HERO ============ -->
+  <section class="hero">
+    <img class="hero__img" src="images/foto/hero-luchtfoto.jpg" alt="Luchtfoto van het huis met tuin en het glazen zwembadgebouw">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1>Logeren &ndash; Samenkomen &ndash; Wandelen &ndash; Thuiskomen in Ellezelles</h1>
+      <p class="hero__sub">Een vakantiewoning in de glooiende Pays des Collines.</p>
+      <div class="hero__actions">
+        <a class="btn btn--teal" href="#">Boek nu</a>
+        <a class="btn btn--outline" href="over-ons.html">Ontdek de woning</a>
+      </div>
+    </div>
+    <a class="hero__scroll" href="#intro" aria-label="Naar beneden scrollen"><span></span></a>
+  </section>
+
+  <!-- ============ 4. INTRO ============ -->
+  <section class="section intro" id="intro">
+    <div class="container container--narrow">
+      <h2>Een vakantiewoning in het hart van de Pays des Collines</h2>
+      <p>Overnachten, ontspannen, samenkomen en ontdekken: beleef de streek ten volle vanuit
+         [Naam], een adres om de heuvels van de Vlaamse Ardennen en de Pays des Collines
+         op een rustige manier te ervaren.</p>
+      <a class="btn btn--teal" href="over-ons.html">Ontdek het huis</a>
+    </div>
+  </section>
+
+  <!-- ============ 5. ONS HUIS (4 tegels) ============ -->
+  <section class="section section--tight tiles">
+    <div class="container">
+      <h2 class="section__title">Ons huis</h2>
+      <div class="carousel tiles__track" data-carousel>
+
+        <a class="tile" href="#">
+          <img loading="lazy" decoding="async" src="images/foto/tegel-kamers.jpg" alt="Slaapkamer onder het dak met zichtbare balken">
+          <span class="tile__veil"></span>
+          <h3>kamers &amp; suites</h3>
+        </a>
+
+        <a class="tile" href="#">
+          <img loading="lazy" decoding="async" src="images/foto/tegel-woonkamers.jpg" alt="Woonkamer met boekenkast en open haard">
+          <span class="tile__veil"></span>
+          <h3>woonkamers</h3>
+        </a>
+
+        <a class="tile" href="#">
+          <img loading="lazy" decoding="async" src="images/foto/tegel-wellness.jpg" alt="Binnenzwembad in de glazen aanbouw">
+          <span class="tile__veil"></span>
+          <h3>tuin &amp; wellness</h3>
+        </a>
+
+        <a class="tile" href="#">
+          <img loading="lazy" decoding="async" src="images/foto/tegel-activiteiten.jpg" alt="Biljartkamer op de bovenverdieping">
+          <span class="tile__veil"></span>
+          <h3>activiteiten</h3>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. AANBIEDINGEN (donkere band + slider) ============ -->
+  <section class="section offers">
+    <div class="container">
+      <div class="offers__head">
+        <h2 class="section__title">Onze aanbiedingen</h2>
+        <div class="slider__nav">
+          <button class="slider__btn" data-dir="-1" aria-label="Vorige">&lsaquo;</button>
+          <button class="slider__btn" data-dir="1" aria-label="Volgende">&rsaquo;</button>
+        </div>
+      </div>
+
+      <div class="carousel offers__track" data-carousel>
+
+          <article class="card card--offer">
+            <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-midweek.jpg" alt="Slaapkamer met rode muur onder de dakspanten"></div>
+            <span class="card__label">VAKANTIEWONING</span>
+            <h3 class="card__title">Midweek Escape</h3>
+            <p class="card__price">Vanaf &euro;90 / nacht / kamer</p>
+            <p class="card__text">Twee nachten doordeweeks, het hele huis voor u alleen.</p>
+            <span class="card__link">Meer weten</span>
+          </article>
+
+          <article class="card card--offer">
+            <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-wandelen.jpg" alt="De tuin en het huis van bovenaf gezien"></div>
+            <span class="card__label">WANDELEN</span>
+            <h3 class="card__title">Wandelarrangement</h3>
+            <p class="card__price">Vanaf &euro;110 / nacht / kamer</p>
+            <p class="card__text">Met picknick en wandelkaart van de streek.</p>
+            <span class="card__link">Meer weten</span>
+          </article>
+
+          <article class="card card--offer">
+            <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-dine.jpg" alt="Eettafel met open keuken erachter"></div>
+            <span class="card__label">DUO</span>
+            <h3 class="card__title">Stay &amp; Dine</h3>
+            <p class="card__price">Vanaf &euro;145 / nacht / kamer</p>
+            <p class="card__text">Overnachting met tafelgerecht van het huis.</p>
+            <span class="card__link">Meer weten</span>
+          </article>
+
+          <article class="card card--offer">
+            <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-wellness.jpg" alt="Het binnenzwembad met zicht op de tuin"></div>
+            <span class="card__label">WELLNESS</span>
+            <h3 class="card__title">Rust &amp; Sauna</h3>
+            <p class="card__price">Vanaf &euro;135 / nacht / kamer</p>
+            <p class="card__text">Priv&eacute;sauna en late check-out.</p>
+            <span class="card__link">Meer weten</span>
+          </article>
+
+      </div>
+
+      <div class="offers__cta">
+        <a class="btn btn--gold" href="#">Bekijk al onze aanbiedingen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. BEELD + TEKST ============ -->
+  <section class="section imgtext">
+    <div class="container imgtext__grid">
+      <div class="imgtext__media"><img loading="lazy" decoding="async" src="images/foto/blok-woonkamer.jpg" alt="Zithoek met boekenkast en open haard"></div>
+      <div class="imgtext__body">
+        <h2>Uw volgende familiefeest of teamdag in Ellezelles</h2>
+        <p>Familieweekend, babyborrel, vergadering of een klein teamverblijf:
+           [Naam] verwelkomt uw gezelschap in een uitzonderlijk kader.</p>
+        <p>Geniet van het hele huis voor u alleen: ruime woonkamers, een keuken om
+           samen in te koken en wandelingen op maat om van uw dag een succes te maken.</p>
+        <div class="imgtext__actions">
+          <a class="btn btn--teal" href="#">Vraag een offerte</a>
+          <a class="link-arrow" href="#">Ontdek het hele huis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. VOLGENDE EVENEMENTEN ============ -->
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title">Volgende evenementen</h2>
+        <a class="link-arrow" href="#">Ontdek alle evenementen</a>
+      </div>
+
+      <div class="grid-4">
+        <article class="card">
+          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-salon.jpg" alt="Twee fauteuils voor het raam met zicht op de tuin"></div>
+          <h3 class="card__title">Streekmarkt op het erf</h3>
+          <p class="card__meta">Elke zondag van 5 april tot 18 oktober</p>
+          <a class="card__link" href="#">Meer weten</a>
+        </article>
+        <article class="card">
+          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-tuinraam.jpg" alt="Zicht vanuit de veranda op de tuin"></div>
+          <h3 class="card__title">Heksenwandeling Ellezelles</h3>
+          <p class="card__meta">Van 19 tot 20 september</p>
+          <a class="card__link" href="#">Meer weten</a>
+        </article>
+        <article class="card">
+          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-biljart.jpg" alt="Biljartballen klaargelegd op het laken"></div>
+          <h3 class="card__title">Wijnavond met de buren</h3>
+          <p class="card__meta">Donderdag 1 oktober</p>
+          <a class="card__link" href="#">Meer weten</a>
+        </article>
+        <article class="card">
+          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-cuisine.jpg" alt="Kapstokje met het opschrift Cuisine in de keuken"></div>
+          <h3 class="card__title">Kerst in het huis</h3>
+          <p class="card__meta">23 december</p>
+          <a class="card__link" href="#">Meer weten</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. LAATSTE NIEUWS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title">Laatste nieuws</h2>
+        <a class="link-arrow" href="#">Ontdek onze nieuwigheden</a>
+      </div>
+
+      <div class="grid-4">
+        <article class="card">
+          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-handdoeken.jpg" alt="Opgerolde handdoeken op een bed"></div>
+          <time class="card__date" datetime="2026-09-10">10/09/2026</time>
+          <h3 class="card__title">Een weekend wandelen in de Pays des Collines</h3>
+          <a class="card__link" href="#">Meer weten</a>
+        </article>
+        <article class="card">
+          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-bord.jpg" alt="Houten bordje: Today is a good day to be happy"></div>
+          <time class="card__date" datetime="2026-08-31">31/08/2026</time>
+          <h3 class="card__title">De mooiste wandelingen vlak bij het huis</h3>
+          <a class="card__link" href="#">Meer weten</a>
+        </article>
+        <article class="card">
+          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-hartje.jpg" alt="Houten hartje aan de badkamerdeur"></div>
+          <time class="card__date" datetime="2026-08-19">19/08/2026</time>
+          <h3 class="card__title">De zomer loopt ten einde, de zin om eropuit te trekken blijft</h3>
+          <a class="card__link" href="#">Meer weten</a>
+        </article>
+        <article class="card">
+          <div class="card__media"><img loading="lazy" decoding="async" src="images/foto/kaart-soif.jpg" alt="Oud emaillen bord Place de la Soif"></div>
+          <time class="card__date" datetime="2026-08-18">18/08/2026</time>
+          <h3 class="card__title">Vier redenen om buiten het seizoen te komen</h3>
+          <a class="card__link" href="#">Meer weten</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. SLOT-CTA ============ -->
+  <section class="cta">
+    <div class="container cta__grid">
+      <div class="cta__body">
+        <h2>Overnachten in Ellezelles tijdens uw volgende uitstap</h2>
+        <p>Verblijven bij [Naam] betekent genieten van rust en comfort,
+           en alles ontdekken wat de streek te bieden heeft.</p>
+        <a class="btn btn--teal" href="#">Reserveer uw verblijf</a>
+      </div>
+      <div class="cta__media"><img loading="lazy" decoding="async" src="images/foto/breed-cta.jpg" alt="Het huis en de tuin vanuit de lucht"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ 11. FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__grid">
+
+    <nav class="footer__col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+        <li><a href="de-streek.html">De streek</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav__cta"><a href="contact.html">Reserveren</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <p>
+        <a href="mailto:info@example.be">info@example.be</a><br>
+        <a href="tel:+3200000000">T. +32 (0)0 00 00 00</a><br>
+        [Straat en nummer]<br>
+        7890 Ellezelles
+      </p>
+    </div>
+
+    <div class="footer__col footer__col--news">
+      <h4>Nieuwsbrief</h4>
+      <p>Op de hoogte blijven van ons nieuws</p>
+      <form class="news-form" onsubmit="return false">
+        <label class="sr-only" for="nieuwsbriefmail">E-mailadres</label>
+        <input id="nieuwsbriefmail" type="email" placeholder="uw@e-mail.be" required>
+        <button class="btn btn--gold" type="submit">Abonneren</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer__bar">
+    <div class="container footer__bar-inner">
+      <span>&copy; <span id="year"></span> Vakantiewoning [Naam] &mdash; Alle rechten voorbehouden</span>
+      <span class="footer__legal">
+        <a href="#">Cookies</a>
+        <a href="#">Juridische vermeldingen</a>
+        <a href="#">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js?v=21"></script>
+</body>
+</html>

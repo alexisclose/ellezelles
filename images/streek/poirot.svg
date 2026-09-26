@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" width="900" height="900" role="img" aria-label="Plaats hier een foto van Hercule Poirot">
+  <rect width="900" height="900" fill="#2b3a33"/>
+  <g fill="none" stroke="#EAB668" stroke-width="2" opacity=".35">
+    <path d="M0 0 L900 900 M900 0 L0 900"/><rect x="1" y="1" width="898" height="898"/>
+  </g>
+  <text x="50%" y="46%" text-anchor="middle" font-family="Georgia, serif" font-size="55" fill="#EAB668" opacity=".9">FOTO</text>
+  <text x="50%" y="57%" text-anchor="middle" font-family="Georgia, serif" font-size="37" fill="#FFF0D9" opacity=".75">Hercule Poirot</text>
+</svg>
