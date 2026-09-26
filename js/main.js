@@ -92,29 +92,58 @@
     targets.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* ---- 5. Contactformulier ----
-     Zolang er geen verzenddienst is ingesteld (zie de uitleg in
-     contact.html) controleren we de velden en tonen we een duidelijke
-     melding in plaats van te doen alsof het bericht vertrokken is. */
+  /* ---- 5. Aanvraag- en contactformulier ----
+     Verstuurt naar Netlify Forms (zie de uitleg in contact.html) zonder
+     de pagina te verlaten. Netlify mailt het bericht door naar de eigenaar,
+     met het hier samengestelde onderwerp. */
   var contactform = document.getElementById('contactform');
   if (contactform) {
     var melding = document.getElementById('formmelding');
+    var verstuurknop = document.getElementById('verstuurknop');
+    var toonMelding = function (tekst) {
+      melding.textContent = tekst;
+      melding.classList.add('is-zichtbaar');
+    };
+    var mooi = function (waarde) {  // '2026-10-03' -> 'za 3 okt 2026'
+      return new Date(waarde + 'T00:00').toLocaleDateString('nl-BE',
+        { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+    };
+
     contactform.addEventListener('submit', function (e) {
-      // Is er wel een verzendadres ingesteld? Dan gewoon laten versturen.
-      var actie = contactform.getAttribute('action');
-      if (actie) { return; }
-
       e.preventDefault();
-
       if (!contactform.checkValidity()) {
         contactform.reportValidity();
         return;
       }
-      melding.textContent =
-        'Het formulier is nog niet gekoppeld aan een verzenddienst, ' +
-        'dus dit bericht wordt nog niet verstuurd. Mail ons intussen ' +
-        'rechtstreeks via het adres hierboven.';
-      melding.classList.add('is-zichtbaar');
+
+      var f = contactform.elements;
+      var wie = f.voornaam.value + ' ' + f.naam.value;
+      var aanvraag = f.aankomst.value && f.vertrek.value;
+      f.subject.value = aanvraag
+        ? 'Aanvraag verblijf ' + mooi(f.aankomst.value) + ' – ' + mooi(f.vertrek.value) +
+          ' (' + f.nachten.value + ' n.) — ' + wie
+        : 'Vraag via de website — ' + wie;
+
+      verstuurknop.disabled = true;
+      toonMelding('Bezig met versturen…');
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(contactform)).toString()
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          contactform.reset();
+          toonMelding(aanvraag
+            ? 'Bedankt! Uw aanvraag is verstuurd. U krijgt zo snel mogelijk een antwoord per e-mail. ' +
+              'Let op: uw verblijf is pas vast na onze bevestiging.'
+            : 'Bedankt! Uw bericht is verstuurd. U krijgt zo snel mogelijk een antwoord per e-mail.');
+        })
+        .catch(function () {
+          toonMelding('Het versturen is niet gelukt. Probeer het later opnieuw, ' +
+            'of mail ons rechtstreeks via het adres hierboven.');
+        })
+        .then(function () { verstuurknop.disabled = false; });
     });
   }
 
@@ -133,7 +162,9 @@
      Een evenement over de hele dag = bezette nachten. De einddatum van een
      Google-evenement is exclusief, dus de vertrekdag blijft vrij als
      aankomstdag voor de volgende gast.
-     Voorbeeld zonder instellingen: contact.html?demo#beschikbaarheid */
+     Gasten kunnen in de kalender een periode kiezen; die komt dan in het
+     aanvraagformulier terecht (blok 5 verstuurt het).
+     Testen met voorbeelddata: contact.html?demo#beschikbaarheid */
   var KALENDER_ID = '0bd0051528690141163417424b4dbadb28cd04c4e81ae253a1d54d7367d19a77@group.calendar.google.com';
   var API_SLEUTEL = 'AIzaSyBerFelafUnLEY4gSKVvVKJcROyyHVw0Bs';
   var MAANDEN_VOORUIT = 12;
@@ -178,6 +209,105 @@
       });
     }
 
+    /* Keuze van de gast, zoals bij Airbnb: eerst aankomst, dan vertrek.
+       Een nacht is vrij als die dag niet bezet is; de vertrekdag zelf mag
+       dus wel bezet zijn (dan komt er die dag een nieuwe gast aan). */
+    var keuze = { aankomst: null, vertrek: null };
+    var geladen = false;
+    var keuzetekst = document.getElementById('keuzetekst');
+    var keuzewis = document.getElementById('keuzewis');
+    var keuzeaanvraag = document.getElementById('keuzeaanvraag');
+    var aankomstIn = document.getElementById('aankomst');
+    var vertrekIn = document.getElementById('vertrek');
+    var onderwerpIn = document.getElementById('onderwerp');
+    var nachtenIn = document.getElementById('nachten');
+    var autoOnderwerp = '';
+
+    function volgendeDag(d) { var x = new Date(d); x.setDate(x.getDate() + 1); return x; }
+    function nachtVrij(d) { return d >= vandaag && !bezet[sleutel(d)]; }
+    function periodeVrij(van, tot) {
+      for (var d = new Date(van); d < tot; d = volgendeDag(d)) {
+        if (!nachtVrij(d)) return false;
+      }
+      return true;
+    }
+    function kiesbaar(d) {
+      if (keuze.aankomst && !keuze.vertrek && d > keuze.aankomst) {
+        return periodeVrij(keuze.aankomst, d);
+      }
+      return nachtVrij(d);
+    }
+    function aantalNachten(a, v) { return Math.round((v - a) / 864e5); }
+    function kort(d) {
+      return d.toLocaleDateString('nl-BE', { weekday: 'short', day: 'numeric', month: 'short' });
+    }
+
+    function kies(d) {
+      if (keuze.aankomst && !keuze.vertrek && d > keuze.aankomst) {
+        keuze.vertrek = d;
+      } else {
+        keuze.aankomst = d;
+        keuze.vertrek = null;
+      }
+      naKeuze(true);
+    }
+
+    // controle van de data in het formulier (ook als ze met de hand ingevuld zijn)
+    function controleer() {
+      if (!aankomstIn || !vertrekIn) return;
+      var a = aankomstIn.value ? leesDatum(aankomstIn.value) : null;
+      var v = vertrekIn.value ? leesDatum(vertrekIn.value) : null;
+      var fout = '';
+      if (a || v) {
+        if (!a || !v) fout = 'Vul zowel een aankomst- als een vertrekdag in.';
+        else if (a < vandaag) fout = 'De aankomstdag ligt in het verleden.';
+        else if (v <= a) fout = 'De vertrekdag moet na de aankomstdag liggen.';
+        else if (geladen && !periodeVrij(a, v)) fout = 'Deze periode is (deels) al bezet. Kies andere data in de kalender.';
+      }
+      vertrekIn.setCustomValidity(fout);
+    }
+
+    function naKeuze(vanKalender) {
+      var a = keuze.aankomst, v = keuze.vertrek;
+      if (geladen) teken();
+
+      if (a && v) {
+        var n = aantalNachten(a, v);
+        keuzetekst.innerHTML = '<strong>' + kort(a) + ' &rarr; ' + kort(v) + '</strong> &middot; ' +
+          n + (n === 1 ? ' nacht' : ' nachten');
+      } else if (a) {
+        keuzetekst.innerHTML = 'Aankomst <strong>' + kort(a) + '</strong> &mdash; kies nu uw vertrekdag.';
+      } else {
+        keuzetekst.textContent = 'Klik op uw aankomstdag en daarna op uw vertrekdag.';
+      }
+      keuzewis.hidden = !a;
+      keuzeaanvraag.disabled = !(a && v);
+
+      if (!aankomstIn) return;
+      if (vanKalender) {
+        aankomstIn.value = a ? sleutel(a) : '';
+        vertrekIn.value = v ? sleutel(v) : '';
+      }
+      nachtenIn.value = a && v ? aantalNachten(a, v) : '';
+      // onderwerp alleen invullen zolang de gast er zelf niets anders in zette
+      if (onderwerpIn.value === '' || onderwerpIn.value === autoOnderwerp) {
+        autoOnderwerp = a && v ? 'Aanvraag verblijf ' + kort(a) + ' – ' + kort(v) : '';
+        onderwerpIn.value = autoOnderwerp;
+      }
+      controleer();
+    }
+
+    function vanFormulier() {
+      var a = aankomstIn.value ? leesDatum(aankomstIn.value) : null;
+      var v = vertrekIn.value ? leesDatum(vertrekIn.value) : null;
+      keuze.aankomst = a;
+      keuze.vertrek = a && v && v > a ? v : null;
+      if (a) {  // blader naar de maand van aankomst
+        verschuiving = (a.getFullYear() - vandaag.getFullYear()) * 12 + a.getMonth() - vandaag.getMonth();
+      }
+      naKeuze(false);
+    }
+
     function aantalZichtbaar() { return breed.matches ? 2 : 1; }
 
     function tekenMaand(jaar, maand) {
@@ -196,13 +326,24 @@
       var dagen = new Date(jaar, maand + 1, 0).getDate();
       for (var n = 1; n <= dagen; n++) {
         var d = new Date(jaar, maand, n);
+        var s = sleutel(d);
         var voorbij = d < vandaag;
-        var isBezet = !voorbij && bezet[sleutel(d)];
-        var klasse = voorbij ? 'is-voorbij' : (isBezet ? 'is-bezet' : 'is-vrij');
+        var isBezet = !voorbij && bezet[s];
+        var klikbaar = kiesbaar(d);
+        var klassen = [voorbij ? 'is-voorbij' : (isBezet ? 'is-bezet' : 'is-vrij')];
+        var rol = '';
+        if (keuze.aankomst && s === sleutel(keuze.aankomst)) { klassen.push('is-aankomst'); rol = ' — aankomst'; }
+        if (keuze.vertrek && s === sleutel(keuze.vertrek)) { klassen.push('is-vertrek'); rol = ' — vertrek'; }
+        if (keuze.vertrek && d > keuze.aankomst && d < keuze.vertrek) klassen.push('is-binnen');
+        if (!voorbij && !isBezet && !klikbaar) klassen.push('is-uit');
         var label = d.toLocaleDateString('nl-BE', { day: 'numeric', month: 'long' }) +
-          (voorbij ? '' : (isBezet ? ' — bezet' : ' — vrij'));
+          (voorbij ? '' : (isBezet ? ' — bezet' : ' — vrij')) + rol;
+
         if ((leeg + n - 1) % 7 === 0 && n > 1) html += '</tr><tr>';
-        html += '<td class="' + klasse + '"><span aria-label="' + label + '">' + n + '</span></td>';
+        html += '<td class="' + klassen.join(' ') + '">' + (klikbaar
+          ? '<button type="button" data-datum="' + s + '" aria-label="' + label +
+            '" aria-pressed="' + (rol ? 'true' : 'false') + '">' + n + '</button>'
+          : '<span aria-label="' + label + '">' + n + '</span>') + '</td>';
       }
       var rest = (7 - (leeg + dagen) % 7) % 7;
       for (var j = 0; j < rest; j++) html += '<td></td>';
@@ -229,9 +370,11 @@
     }
     function klaar(items) {
       verwerk(items);
+      geladen = true;
       kalMelding.textContent = '';
       kalender.classList.add('is-geladen');
       teken();
+      controleer();
     }
 
     Array.prototype.forEach.call(pijlen, function (b) {
@@ -240,22 +383,52 @@
         teken();
       });
     });
-    breed.addListener(function () { if (kalender.classList.contains('is-geladen')) teken(); });
+    breed.addListener(function () { if (geladen) teken(); });
 
-    if (!KALENDER_ID || !API_SLEUTEL) {
-      if (/[?&]demo\b/.test(location.search)) {
-        // voorbeeldboekingen, alleen om te tonen hoe het eruitziet
-        var dag = function (plus) {
-          var d = new Date(vandaag); d.setDate(d.getDate() + plus); return sleutel(d);
-        };
-        klaar([
-          { start: { date: dag(3) },  end: { date: dag(6) } },
-          { start: { date: dag(12) }, end: { date: dag(19) } },
-          { start: { date: dag(26) }, end: { date: dag(35) } }
-        ]);
-      } else {
-        toonFout();
-      }
+    maandenEl.addEventListener('click', function (e) {
+      var knop = e.target.closest('button[data-datum]');
+      if (!knop) return;
+      var s = knop.dataset.datum;
+      kies(leesDatum(s));
+      // na het hertekenen de focus terugzetten op dezelfde dag
+      var terug = maandenEl.querySelector('button[data-datum="' + s + '"]');
+      if (terug) terug.focus();
+    });
+    keuzewis.addEventListener('click', function () {
+      keuze.aankomst = keuze.vertrek = null;
+      naKeuze(true);
+    });
+    keuzeaanvraag.addEventListener('click', function () {
+      var form = document.getElementById('contactform');
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('voornaam').focus({ preventScroll: true });
+    });
+
+    if (aankomstIn) {
+      aankomstIn.min = vertrekIn.min = sleutel(vandaag);
+      aankomstIn.addEventListener('change', vanFormulier);
+      vertrekIn.addEventListener('change', vanFormulier);
+      // na versturen wordt het formulier leeggemaakt; kalender mee leegmaken
+      aankomstIn.form.addEventListener('reset', function () {
+        keuze.aankomst = keuze.vertrek = null;
+        autoOnderwerp = '';
+        setTimeout(function () { naKeuze(false); }, 0);
+      });
+    }
+
+    if (/[?&]demo\b/.test(location.search)) {
+      // voorbeeldboekingen om lokaal te testen (de API-sleutel werkt
+      // alleen op ellezelles.netlify.app)
+      var dag = function (plus) {
+        var d = new Date(vandaag); d.setDate(d.getDate() + plus); return sleutel(d);
+      };
+      klaar([
+        { start: { date: dag(3) },  end: { date: dag(6) } },
+        { start: { date: dag(12) }, end: { date: dag(19) } },
+        { start: { date: dag(26) }, end: { date: dag(35) } }
+      ]);
+    } else if (!KALENDER_ID || !API_SLEUTEL) {
+      toonFout();
     } else {
       var tot = new Date(vandaag.getFullYear(), vandaag.getMonth() + MAANDEN_VOORUIT, 1);
       var url = 'https://www.googleapis.com/calendar/v3/calendars/' +
