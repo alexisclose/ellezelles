@@ -363,10 +363,20 @@
       pijlen[1].disabled = verschuiving >= max;
     }
 
+    // Komt de bezoeker via een 'Reserveren'-knop (contact.html#beschikbaarheid)?
+    // De kalender wordt pas na het laden opgebouwd, dus de sprong van de
+    // browser zelf mislukt soms; daarom scrollen we er hier nog eens heen.
+    function naarKalender() {
+      if (location.hash === '#beschikbaarheid') {
+        document.getElementById('beschikbaarheid').scrollIntoView({ behavior: 'instant' });
+      }
+    }
+
     function toonFout() {
       kalender.classList.add('is-fout');
       kalMelding.innerHTML = 'De beschikbaarheid kon niet geladen worden. ' +
         '<a href="#contactform">Contacteer ons</a> en we laten het u meteen weten.';
+      naarKalender();
     }
     function klaar(items) {
       verwerk(items);
@@ -375,6 +385,7 @@
       kalender.classList.add('is-geladen');
       teken();
       controleer();
+      naarKalender();
     }
 
     Array.prototype.forEach.call(pijlen, function (b) {
