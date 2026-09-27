@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=33">
+<link rel="stylesheet" href="css/style.css?v=34">
 </head>
 <body>
 
@@ -93,7 +93,6 @@
           <div class="kamer__fotos" data-galerij>
             <a href="images/foto/galerij-10.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-10.jpg" alt="Slaapkamer 1: ruime kamer onder de balken, achter een glazen wand"></a>
             <a href="images/foto/galerij-11.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-11.jpg" alt="Slaapkamer 1: eigen badkamer met ligbad"></a>
-            <a href="images/foto/galerij-12.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-12.jpg" alt="Slaapkamer 1: aparte douche"></a>
           </div>
           <div class="kamer__tekst">
             <h3 class="kamer__naam">Slaapkamer 1</h3>
@@ -101,7 +100,6 @@
             <ul class="kamer__lijst">
               <li>Eigen badkamer met ligbad</li>
               <li>Aparte douche</li>
-              <li>Wc op de bovenverdieping</li>
             </ul>
           </div>
         </article>
@@ -114,10 +112,6 @@
           </div>
           <div class="kamer__tekst">
             <h3 class="kamer__naam">Slaapkamer 2</h3>
-            <ul class="kamer__lijst">
-              <li>Badkamer op het gelijkvloers</li>
-              <li>Wc op de bovenverdieping</li>
-            </ul>
           </div>
         </article>
 
@@ -127,10 +121,6 @@
           </div>
           <div class="kamer__tekst">
             <h3 class="kamer__naam">Slaapkamer 3</h3>
-            <ul class="kamer__lijst">
-              <li>Badkamer op het gelijkvloers</li>
-              <li>Wc op de bovenverdieping</li>
-            </ul>
           </div>
         </article>
 
@@ -140,10 +130,6 @@
           </div>
           <div class="kamer__tekst">
             <h3 class="kamer__naam">Slaapkamer 4</h3>
-            <ul class="kamer__lijst">
-              <li>Badkamer op het gelijkvloers</li>
-              <li>Wc op de bovenverdieping</li>
-            </ul>
           </div>
         </article>
 
@@ -153,20 +139,24 @@
           </div>
           <div class="kamer__tekst">
             <h3 class="kamer__naam">Slaapkamer 5</h3>
-            <ul class="kamer__lijst">
-              <li>Badkamer op het gelijkvloers</li>
-              <li>Wc op de bovenverdieping</li>
-            </ul>
           </div>
         </article>
 
       </div>
 
-      <p class="kamers__nota">
-        <strong>Badkamers en wc:</strong> slaapkamer 1 heeft een eigen badkamer met ligbad
-        en aparte douche. De andere kamers delen de badkamer op het gelijkvloers.
-        Op de bovenverdieping is een wc voor alle kamers.
-      </p>
+      <!-- algemeen: geldt voor alle slaapkamers -->
+      <div class="kamers__gedeeld">
+        <div class="kamer__fotos" data-galerij>
+          <a href="images/foto/galerij-12.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-12.jpg" alt="Badkamer met douche op het gelijkvloers, voor alle slaapkamers"></a>
+        </div>
+        <div class="kamer__tekst">
+          <h3 class="kamer__naam">Badkamer en wc</h3>
+          <ul class="kamer__lijst">
+            <li>Badkamer met douche op het gelijkvloers, voor alle slaapkamers</li>
+            <li>Wc op de bovenverdieping, voor alle slaapkamers</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
