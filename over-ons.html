@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=32">
+<link rel="stylesheet" href="css/style.css?v=33">
 </head>
 <body>
 
@@ -75,7 +75,102 @@
     </div>
   </section>
 
-  <!-- ============ 2. ONZE SLAAPKAMERS (8 beelden) ============ -->
+  <!-- ============ 2a. DE SLAAPKAMERS, KAMER PER KAMER ============ -->
+  <!-- ================================================================
+       NAKIJKEN: welke foto bij welke kamer hoort is een voorstel.
+       Een foto verplaatsen = de hele <a>-regel naar een andere kamer
+       knippen. Klik op een foto opent hem groot (js/main.js blok 7);
+       extra foto's van een kamer staan als verborgen <a hidden>-regel
+       en verschijnen dan in dezelfde reeks.
+       ================================================================ -->
+  <section class="section kamers" id="slaapkamers">
+    <div class="container">
+      <h2 class="section__title">De slaapkamers</h2>
+
+      <div class="kamers__raster">
+
+        <article class="kamer kamer--groot">
+          <div class="kamer__fotos" data-galerij>
+            <a href="images/foto/galerij-10.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-10.jpg" alt="Slaapkamer 1: ruime kamer onder de balken, achter een glazen wand"></a>
+            <a href="images/foto/galerij-11.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-11.jpg" alt="Slaapkamer 1: eigen badkamer met ligbad"></a>
+            <a href="images/foto/galerij-12.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-12.jpg" alt="Slaapkamer 1: aparte douche"></a>
+          </div>
+          <div class="kamer__tekst">
+            <h3 class="kamer__naam">Slaapkamer 1</h3>
+            <p>De grootste kamer van het huis, met een eigen badkamer.</p>
+            <ul class="kamer__lijst">
+              <li>Eigen badkamer met ligbad</li>
+              <li>Aparte douche</li>
+              <li>Wc op de bovenverdieping</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="kamer">
+          <div class="kamer__fotos" data-galerij>
+            <a href="images/foto/galerij-05.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-05.jpg" alt="Slaapkamer 2 met houten balken en wereldkaart"></a>
+            <a href="images/foto/galerij-09.jpg" hidden><img loading="lazy" decoding="async" src="images/foto/galerij-09.jpg" alt="Slaapkamer 2: wereldkaart aan de muur"></a>
+            <span class="kamer__aantal" aria-hidden="true">2 foto's</span>
+          </div>
+          <div class="kamer__tekst">
+            <h3 class="kamer__naam">Slaapkamer 2</h3>
+            <ul class="kamer__lijst">
+              <li>Badkamer op het gelijkvloers</li>
+              <li>Wc op de bovenverdieping</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="kamer">
+          <div class="kamer__fotos" data-galerij>
+            <a href="images/foto/galerij-06.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-06.jpg" alt="Slaapkamer 3 met dakraam"></a>
+          </div>
+          <div class="kamer__tekst">
+            <h3 class="kamer__naam">Slaapkamer 3</h3>
+            <ul class="kamer__lijst">
+              <li>Badkamer op het gelijkvloers</li>
+              <li>Wc op de bovenverdieping</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="kamer">
+          <div class="kamer__fotos" data-galerij>
+            <a href="images/foto/galerij-07.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-07.jpg" alt="Slaapkamer 4 met rode muur"></a>
+          </div>
+          <div class="kamer__tekst">
+            <h3 class="kamer__naam">Slaapkamer 4</h3>
+            <ul class="kamer__lijst">
+              <li>Badkamer op het gelijkvloers</li>
+              <li>Wc op de bovenverdieping</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="kamer">
+          <div class="kamer__fotos" data-galerij>
+            <a href="images/foto/galerij-08.jpg"><img loading="lazy" decoding="async" src="images/foto/galerij-08.jpg" alt="Slaapkamer 5 met twee aparte bedden"></a>
+          </div>
+          <div class="kamer__tekst">
+            <h3 class="kamer__naam">Slaapkamer 5</h3>
+            <ul class="kamer__lijst">
+              <li>Badkamer op het gelijkvloers</li>
+              <li>Wc op de bovenverdieping</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="kamers__nota">
+        <strong>Badkamers en wc:</strong> slaapkamer 1 heeft een eigen badkamer met ligbad
+        en aparte douche. De andere kamers delen de badkamer op het gelijkvloers.
+        Op de bovenverdieping is een wc voor alle kamers.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 2b. ONZE SLAAPKAMERS (oude galerij, 8 beelden) ============ -->
   <section class="section">
     <div class="container">
       <h2 class="section__title">Onze slaapkamers</h2>
