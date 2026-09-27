@@ -455,7 +455,78 @@
     }
   }
 
-  /* ---- 7. Jaartal in de footer ---- */
+  /* ---- 7. Foto's groot bekijken (galerijen met data-galerij) ----
+     Klik op een foto: hij opent groot, met pijlen, vegen (gsm), pijltjestoetsen
+     en Esc. De links wijzen naar de foto zelf, dus zonder JavaScript opent
+     de foto gewoon in het venster. */
+  var galerijen = document.querySelectorAll('[data-galerij]');
+  if (galerijen.length && window.HTMLDialogElement) {
+    var doos = document.createElement('dialog');
+    doos.className = 'lichtbak';
+    doos.setAttribute('aria-label', 'Foto groot bekijken');
+    doos.innerHTML =
+      '<button class="lichtbak__sluit" type="button" aria-label="Sluiten">&times;</button>' +
+      '<button class="lichtbak__pijl lichtbak__pijl--vorige" type="button" aria-label="Vorige foto">&lsaquo;</button>' +
+      '<figure class="lichtbak__figuur"><img class="lichtbak__img" alt="">' +
+      '<figcaption class="lichtbak__onderschrift" aria-live="polite"></figcaption></figure>' +
+      '<button class="lichtbak__pijl lichtbak__pijl--volgende" type="button" aria-label="Volgende foto">&rsaquo;</button>';
+    document.body.appendChild(doos);
+
+    var lbImg = doos.querySelector('.lichtbak__img');
+    var lbTekst = doos.querySelector('.lichtbak__onderschrift');
+    var reeks = [];   // links van de galerij die open is
+    var nr = 0;
+
+    var toon = function (i) {
+      nr = (i + reeks.length) % reeks.length;
+      var link = reeks[nr];
+      var klein = link.querySelector('img');
+      lbImg.src = link.getAttribute('href');
+      lbImg.alt = klein ? klein.alt : '';
+      lbTekst.textContent = (klein && klein.alt ? klein.alt + '  ·  ' : '') + (nr + 1) + ' / ' + reeks.length;
+    };
+
+    Array.prototype.forEach.call(galerijen, function (galerij) {
+      var links = Array.prototype.slice.call(galerij.querySelectorAll('a'));
+      links.forEach(function (link, i) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          reeks = links;
+          doos.classList.toggle('is-enkel', links.length < 2);
+          toon(i);
+          doos.showModal();
+          document.body.style.overflow = 'hidden';
+        });
+      });
+    });
+
+    // de pagina meteen weer laten scrollen; 'close' vangt ook Esc op
+    var sluit = function () {
+      if (doos.open) doos.close();
+      document.body.style.overflow = '';
+    };
+    doos.addEventListener('close', function () { document.body.style.overflow = ''; });
+    doos.querySelector('.lichtbak__sluit').addEventListener('click', sluit);
+    doos.querySelector('.lichtbak__pijl--vorige').addEventListener('click', function () { toon(nr - 1); });
+    doos.querySelector('.lichtbak__pijl--volgende').addEventListener('click', function () { toon(nr + 1); });
+    // klik naast de foto (op de donkere achtergrond) sluit
+    doos.addEventListener('click', function (e) { if (e.target === doos) sluit(); });
+    doos.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') toon(nr - 1);
+      if (e.key === 'ArrowRight') toon(nr + 1);
+    });
+    // vegen op gsm
+    var veegX = null;
+    doos.addEventListener('touchstart', function (e) { veegX = e.touches[0].clientX; }, { passive: true });
+    doos.addEventListener('touchend', function (e) {
+      if (veegX === null) return;
+      var dx = e.changedTouches[0].clientX - veegX;
+      if (Math.abs(dx) > 50) toon(dx < 0 ? nr + 1 : nr - 1);
+      veegX = null;
+    });
+  }
+
+  /* ---- 8. Jaartal in de footer ---- */
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();

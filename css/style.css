@@ -534,6 +534,42 @@ p{margin:0 0 1.1em}
   transition:transform .6s var(--ease);
 }
 .gallery a:hover img{transform:scale(1.06)}
+.gallery[data-galerij] a{cursor:zoom-in}
+
+/* ---- Foto groot bekijken (js/main.js blok 7) ---- */
+.lichtbak{
+  width:100%;height:100%;max-width:none;max-height:none;
+  margin:0;padding:0;border:0;
+  background:transparent;color:#fff;
+}
+.lichtbak[open]{display:flex;align-items:center;justify-content:center;gap:20px}
+.lichtbak::backdrop{background:rgba(10,20,19,.93)}
+.lichtbak__figuur{
+  margin:0;max-width:min(900px,84vw);
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.lichtbak__img{max-width:100%;max-height:80vh;width:auto;height:auto;object-fit:contain}
+.lichtbak__onderschrift{font-size:.9375rem;color:rgba(255,255,255,.8);text-align:center}
+.lichtbak__pijl{
+  flex:none;width:52px;height:52px;
+  border:1px solid rgba(255,255,255,.5);
+  font-size:2rem;line-height:1;color:#fff;
+  transition:background .2s var(--ease),color .2s var(--ease);
+}
+.lichtbak__pijl:hover{background:#fff;color:var(--dark)}
+.lichtbak.is-enkel .lichtbak__pijl{visibility:hidden}
+.lichtbak__sluit{
+  position:absolute;top:14px;right:14px;
+  width:48px;height:48px;font-size:2.4rem;line-height:1;color:#fff;
+}
+.lichtbak__sluit:hover{color:var(--gold)}
+@media (max-width:600px){
+  .lichtbak__figuur{max-width:100%}
+  .lichtbak__img{max-height:68vh}
+  .lichtbak__pijl{position:absolute;bottom:22px}
+  .lichtbak__pijl--vorige{left:20px}
+  .lichtbak__pijl--volgende{right:20px}
+}
 
 /* =========================================================
    15c. CONTACTPAGINA
