@@ -896,6 +896,11 @@ p{margin:0 0 1.1em}
   .split--reverse .split__grid{grid-template-columns:1fr}
   .split__media,
   .split--reverse .split__media{order:-1}
+  /* --titel-boven: titel, dan foto, dan tekst */
+  .split--titel-boven .split__grid{gap:0}
+  .split--titel-boven .split__body{display:contents}
+  .split--titel-boven .split__body h2{order:-2}
+  .split--titel-boven .split__media{margin-bottom:28px}
   .pagehero{height:400px}                    /* referentie: 400px */
 
   /* pijltjes weg: op mobiel wordt er geswipet, net als op de referentie */
