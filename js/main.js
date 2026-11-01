@@ -92,8 +92,10 @@
     targets.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* ---- 5. Aanvraag- en contactformulier ----
-     Verstuurt naar Netlify Forms (zie de uitleg in contact.html) zonder
+  /* ---- 5. Reserverings- en contactformulier ----
+     Beide heten #contactform: met aankomst/vertrek (reserveren.html) of
+     zonder (contact.html). Verstuurt naar Netlify Forms (zie de uitleg in
+     reserveren.html) zonder
      de pagina te verlaten. Netlify mailt het bericht door naar de eigenaar,
      met het hier samengestelde onderwerp. */
   var contactform = document.getElementById('contactform');
@@ -118,7 +120,7 @@
 
       var f = contactform.elements;
       var wie = f.voornaam.value + ' ' + f.naam.value;
-      var aanvraag = f.aankomst.value && f.vertrek.value;
+      var aanvraag = f.aankomst && f.aankomst.value && f.vertrek.value;
       f.subject.value = aanvraag
         ? 'Aanvraag verblijf ' + mooi(f.aankomst.value) + ' – ' + mooi(f.vertrek.value) +
           ' (' + f.nachten.value + ' n.) — ' + wie
@@ -147,7 +149,7 @@
     });
   }
 
-  /* ---- 6. Beschikbaarheidskalender (contactpagina) ----
+  /* ---- 6. Beschikbaarheidskalender (reserveren.html) ----
      De bezette dagen komen uit een openbare Google Agenda. Eenmalig instellen:
        1. Maak in Google Agenda een aparte agenda 'Vakantiewoning – bezetting'.
        2. Instellingen van die agenda > Toegangsrechten: 'Openbaar maken' met
@@ -164,7 +166,7 @@
      aankomstdag voor de volgende gast.
      Gasten kunnen in de kalender een periode kiezen; die komt dan in het
      aanvraagformulier terecht (blok 5 verstuurt het).
-     Testen met voorbeelddata: contact.html?demo#beschikbaarheid */
+     Testen met voorbeelddata: reserveren.html?demo#beschikbaarheid */
   var KALENDER_ID = '0bd0051528690141163417424b4dbadb28cd04c4e81ae253a1d54d7367d19a77@group.calendar.google.com';
   var API_SLEUTEL = 'AIzaSyBerFelafUnLEY4gSKVvVKJcROyyHVw0Bs';
   var MAANDEN_VOORUIT = 12;
@@ -290,7 +292,7 @@
       }
       nachtenIn.value = a && v ? aantalNachten(a, v) : '';
       // onderwerp alleen invullen zolang de gast er zelf niets anders in zette
-      if (onderwerpIn.value === '' || onderwerpIn.value === autoOnderwerp) {
+      if (onderwerpIn && (onderwerpIn.value === '' || onderwerpIn.value === autoOnderwerp)) {
         autoOnderwerp = a && v ? 'Aanvraag verblijf ' + kort(a) + ' – ' + kort(v) : '';
         onderwerpIn.value = autoOnderwerp;
       }
@@ -363,7 +365,7 @@
       pijlen[1].disabled = verschuiving >= max;
     }
 
-    // Komt de bezoeker via een 'Reserveren'-knop (contact.html#beschikbaarheid)?
+    // Komt de bezoeker via een 'Reserveren'-knop (reserveren.html#beschikbaarheid)?
     // De kalender wordt pas na het laden opgebouwd, dus de sprong van de
     // browser zelf mislukt soms; daarom scrollen we er hier nog eens heen.
     function naarKalender() {

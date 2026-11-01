@@ -727,6 +727,7 @@ p{margin:0 0 1.1em}
 .formulier{max-width:790px;margin-inline:auto}   /* referentie: 790px */
 .formulier__intro{text-align:center;margin-bottom:2.4em}
 .formulier__intro p{color:var(--text-soft)}
+.formulier__intro a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
 
 .veldgroep{
   display:grid;

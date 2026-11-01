@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact &amp; info — Vakantiewoning [Naam] in Ellezelles</title>
-<meta name="description" content="Contacteer vakantiewoning [Naam] in Ellezelles: adres, e-mail en routebeschrijving. Of stuur ons meteen een bericht via het formulier.">
+<meta name="description" content="Contacteer vakantiewoning [Naam] in Ellezelles: adres, e-mail en routebeschrijving. Of stuur ons een vraag via het formulier.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=42">
+<link rel="stylesheet" href="css/style.css?v=43">
 </head>
 <body>
 
@@ -19,10 +19,10 @@
 <!-- ============ AANBIEDINGENBALK ============ -->
 <div class="topbar">
   <div class="topbar__track">
-    <a href="contact.html#beschikbaarheid">Midweek Escape — 2 nachten vanaf &euro;180</a>
+    <a href="reserveren.html#beschikbaarheid">Midweek Escape — 2 nachten vanaf &euro;180</a>
     <a href="contact.html">Wandelarrangement Pays des Collines</a>
     <a href="contact.html">Cadeaubon vanaf &euro;75</a>
-    <a href="contact.html#beschikbaarheid">Last minute: dit weekend</a>
+    <a href="reserveren.html#beschikbaarheid">Last minute: dit weekend</a>
   </div>
 </div>
 
@@ -46,7 +46,7 @@
         <li><a href="de-streek.html">De streek</a></li>
         <li><a href="activiteiten.html">Activiteiten</a></li>
         <li><a href="contact.html" aria-current="page">Contact</a></li>
-        <li class="nav__cta"><a href="contact.html#beschikbaarheid">Reserveren</a></li>
+        <li class="nav__cta"><a href="reserveren.html#beschikbaarheid">Reserveren</a></li>
       </ul>
     </nav>
 
@@ -56,7 +56,7 @@
         <a href="#">FR</a>
         <a href="#">EN</a>
       </div>
-      <a class="btn btn--gold" href="contact.html#beschikbaarheid">Reserveren</a>
+      <a class="btn btn--gold" href="reserveren.html#beschikbaarheid">Reserveren</a>
       <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Navigatie wisselen">
         <span></span><span></span><span></span>
       </button>
@@ -102,93 +102,26 @@
     </div>
   </section>
 
-  <!-- ============ 3. BESCHIKBAARHEID ============ -->
-  <!-- ================================================================
-       De kalender haalt de bezette dagen rechtstreeks uit Google Agenda.
-       Instellen (eenmalig) — zie de uitleg bovenaan blok 6 in js/main.js.
-
-       Voor het dagelijks gebruik:
-         - Open Google Agenda en kies de agenda 'Ellezelles'
-         - Maak een evenement van de hele dag over de geboekte nachten
-           (aankomst t.e.m. de laatste nacht; de vertrekdag blijft vrij)
-         - Bij het volgende bezoek aan de site staat het erop.
-           Evenement wissen = dagen weer vrij.
-       ================================================================ -->
-  <section class="section section--grey" id="beschikbaarheid">
-    <div class="container">
-      <h2 class="section__title">Beschikbaarheid</h2>
-
-      <div class="kalender" id="kalender">
-        <div class="kalender__balk">
-          <button class="kalender__pijl" type="button" data-stap="-1" aria-label="Vorige maand">&larr;</button>
-          <ul class="kalender__legende">
-            <li><span class="kalender__stip"></span> Vrij</li>
-            <li><span class="kalender__stip kalender__stip--bezet"></span> Bezet</li>
-          </ul>
-          <button class="kalender__pijl" type="button" data-stap="1" aria-label="Volgende maand">&rarr;</button>
-        </div>
-        <div class="kalender__maanden" id="kalendermaanden"></div>
-        <p class="kalender__melding" id="kalendermelding" role="status">Beschikbaarheid laden&hellip;</p>
-
-        <!-- keuze van de gast: aankomst + vertrek, zoals bij Airbnb -->
-        <div class="kalender__keuze">
-          <p class="kalender__keuzetekst" id="keuzetekst" aria-live="polite">Klik op uw aankomstdag en daarna op uw vertrekdag.</p>
-          <div class="kalender__keuzeknoppen">
-            <button class="kalender__wis" id="keuzewis" type="button" hidden>Wissen</button>
-            <button class="btn btn--teal" id="keuzeaanvraag" type="button" disabled>Verblijf aanvragen</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 4. CONTACTFORMULIER ============ -->
-  <section class="section">
+  <!-- ============ 3. CONTACTFORMULIER (kort; reserveren gaat via reserveren.html) ============ -->
+  <section class="section section--grey">
     <div class="container">
       <div class="formulier">
 
         <div class="formulier__intro">
-          <h2>Aanvraag of vraag</h2>
-          <p>Vraag een verblijf aan of stel ons gewoon een vraag. We antwoorden u zo snel mogelijk per e-mail.</p>
+          <h2>Stel uw vraag</h2>
+          <p>We antwoorden u zo snel mogelijk per e-mail.
+             Wilt u een verblijf boeken? Dat doet u via <a href="reserveren.html#beschikbaarheid">Reserveren</a>.</p>
         </div>
 
-        <!-- ================================================================
-             VERZENDEN — via Netlify Forms (gratis tot 100 berichten/maand).
-             Netlify herkent dit formulier bij elke deploy aan data-netlify.
-             Eenmalig instellen in het Netlify-dashboard van de site:
-               1. Forms > 'Enable form detection' aanzetten en opnieuw deployen
-               2. Forms > Form notifications > Add notification >
-                  Email notification: het e-mailadres van de eigenaar
-             Elke aanvraag komt dan als e-mail binnen; 'Beantwoorden' gaat
-             naar het e-mailadres dat de gast invulde.
-             Lokaal (localhost) werkt het versturen niet, alleen online.
-             ================================================================ -->
-        <form class="formulier__form" id="contactform" name="aanvraag" method="post"
+        <!-- VERZENDEN — via Netlify Forms, net als het reserveringsformulier
+             (zie de uitleg in reserveren.html). Dit formulier heet 'contact'. -->
+        <form class="formulier__form" id="contactform" name="contact" method="post"
               data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
-          <input type="hidden" name="form-name" value="aanvraag">
-          <input type="hidden" name="subject" id="mailonderwerp" value="Bericht via de website">
-          <input type="hidden" name="nachten" id="nachten" value="">
+          <input type="hidden" name="form-name" value="contact">
+          <input type="hidden" name="subject" id="mailonderwerp" value="Vraag via de website">
           <p class="sr-only" aria-hidden="true"><label>Niet invullen: <input name="bot-field" tabindex="-1"></label></p>
 
           <div class="veldgroep">
-            <div class="veld">
-              <label for="aankomst">Aankomst</label>
-              <input id="aankomst" name="aankomst" type="date">
-            </div>
-            <div class="veld">
-              <label for="vertrek">Vertrek</label>
-              <input id="vertrek" name="vertrek" type="date">
-            </div>
-            <div class="veld">
-              <label for="gasten">Aantal gasten</label>
-              <input id="gasten" name="gasten" type="number" min="1" inputmode="numeric">
-            </div>
-            <div class="veld">
-              <label for="telefoon">Telefoon of gsm <span class="verplicht" aria-hidden="true">*</span></label>
-              <input id="telefoon" name="telefoon" type="tel" autocomplete="tel" required>
-            </div>
-            <p class="veld--breed veldhint">Laat de data leeg voor een algemene vraag.</p>
-
             <div class="veld">
               <label for="voornaam">Voornaam <span class="verplicht" aria-hidden="true">*</span></label>
               <input id="voornaam" name="voornaam" type="text" autocomplete="given-name" required>
@@ -197,43 +130,17 @@
               <label for="naam">Naam <span class="verplicht" aria-hidden="true">*</span></label>
               <input id="naam" name="naam" type="text" autocomplete="family-name" required>
             </div>
-
-            <div class="veld veld--breed">
+            <div class="veld">
               <label for="email">E-mailadres <span class="verplicht" aria-hidden="true">*</span></label>
               <input id="email" name="email" type="email" autocomplete="email" required>
             </div>
-
-            <p class="veld--breed veldkop">Adres <span class="veld__noot">(verplicht bij reservatie)</span></p>
-            <div class="veld veld--breed">
-              <label for="straat">Straat en huisnummer</label>
-              <input id="straat" name="straat" type="text" autocomplete="street-address">
-            </div>
             <div class="veld">
-              <label for="postcode">Postcode</label>
-              <input id="postcode" name="postcode" type="text" autocomplete="postal-code">
+              <label for="telefoon">Telefoon of gsm</label>
+              <input id="telefoon" name="telefoon" type="tel" autocomplete="tel">
             </div>
-            <div class="veld">
-              <label for="gemeente">Gemeente</label>
-              <input id="gemeente" name="gemeente" type="text" autocomplete="address-level2">
-            </div>
-            <div class="veld veld--breed">
-              <label for="land">Land</label>
-              <input id="land" name="land" type="text" autocomplete="country-name">
-            </div>
-
-            <div class="veld veld--breed">
-              <label for="onderwerp">Onderwerp <span class="verplicht" aria-hidden="true">*</span></label>
-              <input id="onderwerp" name="onderwerp" type="text" required>
-            </div>
-
             <div class="veld veld--breed">
               <label for="bericht">Bericht <span class="verplicht" aria-hidden="true">*</span></label>
-              <textarea id="bericht" name="bericht" rows="7" required></textarea>
-            </div>
-
-            <div class="veld veld--breed">
-              <label for="bijkomend">Bijkomende informatie</label>
-              <textarea id="bijkomend" name="bijkomend" rows="4" class="veld__kort"></textarea>
+              <textarea id="bericht" name="bericht" rows="6" required></textarea>
             </div>
           </div>
 
@@ -262,7 +169,7 @@
         <li><a href="de-streek.html">De streek</a></li>
         <li><a href="activiteiten.html">Activiteiten</a></li>
         <li><a href="contact.html" aria-current="page">Contact</a></li>
-        <li class="nav__cta"><a href="contact.html#beschikbaarheid">Reserveren</a></li>
+        <li class="nav__cta"><a href="reserveren.html#beschikbaarheid">Reserveren</a></li>
       </ul>
     </nav>
 
@@ -299,6 +206,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=28"></script>
+<script src="js/main.js?v=29"></script>
 </body>
 </html>
