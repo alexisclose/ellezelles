@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=39">
+<link rel="stylesheet" href="css/style.css?v=40">
 </head>
 <body>
 
@@ -202,21 +202,22 @@
               <input id="email" name="email" type="email" autocomplete="email" required>
             </div>
 
+            <p class="veld--breed veldkop">Adres <span class="veld__noot">(verplicht bij reservatie)</span></p>
             <div class="veld veld--breed">
-              <label for="straat">Straat en huisnummer <span class="veld__noot">(verplicht bij reservatie)</span></label>
-              <input id="straat" name="straat" type="text" autocomplete="street-address" data-reservatie>
+              <label for="straat">Straat en huisnummer</label>
+              <input id="straat" name="straat" type="text" autocomplete="street-address">
             </div>
             <div class="veld">
-              <label for="postcode">Postcode <span class="veld__noot">(verplicht bij reservatie)</span></label>
-              <input id="postcode" name="postcode" type="text" autocomplete="postal-code" data-reservatie>
+              <label for="postcode">Postcode</label>
+              <input id="postcode" name="postcode" type="text" autocomplete="postal-code">
             </div>
             <div class="veld">
-              <label for="gemeente">Gemeente <span class="veld__noot">(verplicht bij reservatie)</span></label>
-              <input id="gemeente" name="gemeente" type="text" autocomplete="address-level2" data-reservatie>
+              <label for="gemeente">Gemeente</label>
+              <input id="gemeente" name="gemeente" type="text" autocomplete="address-level2">
             </div>
             <div class="veld veld--breed">
-              <label for="land">Land <span class="veld__noot">(verplicht bij reservatie)</span></label>
-              <input id="land" name="land" type="text" autocomplete="country-name" data-reservatie>
+              <label for="land">Land</label>
+              <input id="land" name="land" type="text" autocomplete="country-name">
             </div>
 
             <div class="veld veld--breed">
@@ -296,6 +297,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=27"></script>
+<script src="js/main.js?v=28"></script>
 </body>
 </html>

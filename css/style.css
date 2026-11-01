@@ -742,7 +742,12 @@ p{margin:0 0 1.1em}
   color:var(--text-soft);
 }
 .veld label .verplicht{color:var(--teal)}
-.veld label .veld__noot{text-transform:none;letter-spacing:0}
+/* tussenkopje boven een groep velden, bv. 'Adres (verplicht bij reservatie)' */
+.veldkop{
+  margin:12px 0 -4px;font-family:var(--font-head);font-variation-settings:var(--head-variation);
+  font-size:1.15rem;color:var(--text);
+}
+.veldkop .veld__noot{font-family:var(--font-body);font-size:.9rem;color:var(--text-soft)}
 
 .veld input,.veld textarea{
   font-family:var(--font-body);
