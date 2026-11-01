@@ -852,6 +852,32 @@ p{margin:0 0 1.1em}
   .kalender__legende{gap:14px}
 }
 
+/* ---- Activiteiten: blokken met icoon, kop en een korte lijst ---- */
+.activiteiten{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,5vw,64px) clamp(32px,5vw,80px);
+  max-width:1080px;
+}
+.activiteit__kop{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.activiteit__kop .kenmerk__icoon{width:56px;height:56px;flex:none}
+.activiteit__kop .kenmerk__icoon svg{width:26px;height:26px}
+.activiteit__kop h3{font-size:1.5rem;margin:0}
+.activiteit__lijst li{padding:12px 0;border-bottom:1px solid var(--border)}
+.activiteit__lijst li:first-child{border-top:1px solid var(--border)}
+.activiteit__lijst strong{font-weight:700}
+.activiteit__lijst span{display:block;color:var(--text-soft);font-size:.9375rem;margin-top:2px}
+.activiteit__lijst a,.activiteit__tip a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.routes li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding:11px 0;border-bottom:1px solid var(--border);
+}
+.routes li:first-child{border-top:1px solid var(--border)}
+.routes li > span:last-child{color:var(--text-soft);white-space:nowrap}
+.activiteit__tip{margin:1.2em 0 0;font-size:.9375rem;color:var(--text-soft)}
+@media (max-width:760px){
+  .activiteiten{grid-template-columns:1fr}
+}
+
 /* ---- Afstandenlijst (pagina 'De streek') ---- */
 .afstanden{
   display:grid;
