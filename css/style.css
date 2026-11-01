@@ -526,6 +526,36 @@ p{margin:0 0 1.1em}
 .prose p{color:var(--text-soft);font-size:1.0625rem}
 .prose .btn{margin-top:1.2em}
 
+/* ---- Tarieven: eenvoudige prijstabellen ---- */
+.tarieven{max-width:820px}
+.tarieven__tabel{width:100%;border-collapse:collapse;margin-bottom:56px}
+.tarieven__tabel caption{
+  text-align:left;margin-bottom:.5em;
+  font-family:var(--font-head);font-variation-settings:var(--head-variation);font-size:1.6rem;
+}
+.tarieven__tabel th,
+.tarieven__tabel td{padding:18px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.tarieven__tabel thead th{
+  border-bottom:2px solid var(--teal);padding-top:0;
+  font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);
+}
+.tarieven__tabel tbody th{font-weight:700}
+.tarieven__tabel tbody tr:first-child > *{border-top:1px solid var(--border)}
+.tarieven__tabel thead + tbody tr:first-child > *{border-top:0}
+.tarieven__tabel td{color:var(--text-soft)}
+.tarieven__tabel .tarieven__prijs-kol{text-align:right;white-space:nowrap}
+.tarieven__prijs{
+  font-family:var(--font-head);font-variation-settings:var(--head-variation);
+  font-size:1.35rem;color:var(--text);
+}
+.tarieven__sub{display:block;font-weight:400;font-size:.9rem;color:var(--text-soft)}
+.tarieven__noot{text-align:center;color:var(--text-soft);font-size:1.0625rem;margin:0}
+@media (max-width:600px){
+  .tarieven__tabel th,
+  .tarieven__tabel td{padding:14px 8px}
+  .tarieven__prijs{font-size:1.15rem}
+}
+
 /* ---- Beeld + tekst, om en om (referentie: groot beeld, smalle kolom) ---- */
 .container--wide{max-width:1360px}
 
