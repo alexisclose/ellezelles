@@ -322,25 +322,24 @@ p{margin:0 0 1.1em}
   font-family:var(--font-head);font-variation-settings:var(--head-variation);
   font-size:1.2rem;line-height:1.3;
 }
-/* voorzieningen op Ons huis: zelfde ronde icoontjes, per groep een raster */
-.voorzieningen__groep{padding:32px 0;border-top:1px solid var(--border)}
-.voorzieningen__groep:last-child{border-bottom:1px solid var(--border)}
-.voorzieningen__kop{
-  font-family:var(--font-body);font-size:.8rem;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--teal);
-  margin:0 0 24px;
-}
+/* voorzieningen op Ons huis: kleine ronde icoontjes per ruimte,
+   gecentreerd onder een sectietitel, links in een tekstblok (--links) */
 .voorzieningen__lijst{
-  display:grid;grid-template-columns:repeat(6,1fr);gap:28px 12px;
-  list-style:none;margin:0;padding:0;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:24px 8px;
+  list-style:none;margin:0 0 40px;padding:0;
 }
-.voorziening{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
-.voorziening .kenmerk__icoon{width:60px;height:60px}
-.voorziening .kenmerk__icoon svg{width:28px;height:28px}
-.voorziening__naam{font-size:.95rem;line-height:1.3}
+.voorzieningen__lijst--links{justify-content:flex-start;margin:1.6em 0 0}
+.voorziening{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  width:108px;text-align:center;
+}
+.voorziening .kenmerk__icoon{width:56px;height:56px}
+.voorziening .kenmerk__icoon svg{width:26px;height:26px}
+.voorziening__naam{font-size:.92rem;line-height:1.3}
 @media (max-width:760px){
-  .voorzieningen__lijst{grid-template-columns:repeat(3,1fr);gap:22px 8px}
-  .voorziening .kenmerk__icoon{width:52px;height:52px}
+  .voorzieningen__lijst{gap:20px 4px}
+  .voorziening{width:100px}
+  .voorziening .kenmerk__icoon{width:50px;height:50px}
   .voorziening .kenmerk__icoon svg{width:24px;height:24px}
   .voorziening__naam{font-size:.85rem}
   .kenmerken__lijst{grid-template-columns:repeat(2,1fr)}
