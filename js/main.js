@@ -111,6 +111,11 @@
 
     contactform.addEventListener('submit', function (e) {
       e.preventDefault();
+      // adresvelden (data-reservatie) zijn enkel verplicht bij een aanvraag met data
+      var metData = contactform.elements.aankomst.value && contactform.elements.vertrek.value;
+      contactform.querySelectorAll('[data-reservatie]').forEach(function (veld) {
+        veld.required = !!metData;
+      });
       if (!contactform.checkValidity()) {
         contactform.reportValidity();
         return;
