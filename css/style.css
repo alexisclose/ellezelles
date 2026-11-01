@@ -322,7 +322,15 @@ p{margin:0 0 1.1em}
   font-family:var(--font-head);font-variation-settings:var(--head-variation);
   font-size:1.2rem;line-height:1.3;
 }
+/* keukentoestellen op Ons huis: zelfde ronde icoontjes, kleiner raster */
+.toestellen{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:32px 16px;
+  list-style:none;margin:clamp(40px,5vw,64px) 0 0;padding:0;
+}
+.toestel{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.toestel__naam{font-family:var(--font-head);font-variation-settings:var(--head-variation);font-size:1.05rem}
 @media (max-width:760px){
+  .toestellen{grid-template-columns:repeat(2,1fr);gap:24px 12px}
   .kenmerken__lijst{grid-template-columns:repeat(2,1fr)}
   .kenmerk:nth-child(3){border-left:0}
   .kenmerk:nth-child(n+3){border-top:1px solid var(--border)}
