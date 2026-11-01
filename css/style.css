@@ -322,15 +322,27 @@ p{margin:0 0 1.1em}
   font-family:var(--font-head);font-variation-settings:var(--head-variation);
   font-size:1.2rem;line-height:1.3;
 }
-/* keukentoestellen op Ons huis: zelfde ronde icoontjes, kleiner raster */
-.toestellen{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:32px 16px;
-  list-style:none;margin:clamp(40px,5vw,64px) 0 0;padding:0;
+/* voorzieningen op Ons huis: zelfde ronde icoontjes, per groep een raster */
+.voorzieningen__groep{padding:32px 0;border-top:1px solid var(--border)}
+.voorzieningen__groep:last-child{border-bottom:1px solid var(--border)}
+.voorzieningen__kop{
+  font-family:var(--font-body);font-size:.8rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--teal);
+  margin:0 0 24px;
 }
-.toestel{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
-.toestel__naam{font-family:var(--font-head);font-variation-settings:var(--head-variation);font-size:1.05rem}
+.voorzieningen__lijst{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:28px 12px;
+  list-style:none;margin:0;padding:0;
+}
+.voorziening{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.voorziening .kenmerk__icoon{width:60px;height:60px}
+.voorziening .kenmerk__icoon svg{width:28px;height:28px}
+.voorziening__naam{font-size:.95rem;line-height:1.3}
 @media (max-width:760px){
-  .toestellen{grid-template-columns:repeat(2,1fr);gap:24px 12px}
+  .voorzieningen__lijst{grid-template-columns:repeat(3,1fr);gap:22px 8px}
+  .voorziening .kenmerk__icoon{width:52px;height:52px}
+  .voorziening .kenmerk__icoon svg{width:24px;height:24px}
+  .voorziening__naam{font-size:.85rem}
   .kenmerken__lijst{grid-template-columns:repeat(2,1fr)}
   .kenmerk:nth-child(3){border-left:0}
   .kenmerk:nth-child(n+3){border-top:1px solid var(--border)}
