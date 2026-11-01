@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=41">
+<link rel="stylesheet" href="css/style.css?v=42">
 </head>
 <body>
 
@@ -82,171 +82,125 @@
     <div class="container">
       <div class="prose">
         <h2>Leuke uitstappen in de buurt</h2>
-        <p>Onze favorieten in en rond het Pays des Collines: voor kinderen en
-           avonturiers, voor wandelaars en fietsers, en voor wie gewoon lekker
-           wil eten of een goed Belgisch bier wil proeven.</p>
+        <p>Onze favorieten in en rond het Pays des Collines.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 3. UITSTAPPEN (4 blokken) ============ -->
-  <!-- Een tip toevoegen = een <li> kopiëren binnen het juiste blok. -->
+  <!-- ============ 3. UITSTAPPEN (6 gekleurde tegels) ============ -->
+  <!-- Kleur van een tegel: uitje--donker, uitje--teal of uitje--creme.
+       Een tip toevoegen = een <li> kopiëren binnen de tegel. -->
   <section class="section section--tight">
-    <div class="container activiteiten">
+    <div class="container uitjes">
 
-      <div class="activiteit">
-        <div class="activiteit__kop">
-          <span class="kenmerk__icoon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.6.3 4.5 2.8 4.5 5.8"/></svg>
-          </span>
-          <h3>Met kinderen</h3>
-        </div>
-        <ul class="activiteit__lijst">
-          <li><strong>IJsmolenhoeve</strong> <span>Ronse &middot; kinderboerderij, klimmuur, wandelen met ezel of alpaca, ponyrit</span></li>
-          <li><strong>Ezelfokkerij Château des Mottes</strong> <span>Frasnes-lez-Anvaing</span></li>
-          <li><strong>Pairi Daiza</strong> <span>Brugelette &middot; dierenpark</span></li>
-          <li><strong>Sentier de l'Étrange</strong> <span>Ellezelles &middot; wandeling vol legendes, start aan de kerk</span></li>
+      <article class="uitje uitje--donker">
+        <span class="uitje__icoon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.2c2.6.3 4.5 2.8 4.5 5.8"/></svg>
+        </span>
+        <h3>Met kinderen</h3>
+        <ul>
+          <li><strong>IJsmolenhoeve</strong> Ronse &middot; boerderij, klimmuur, ponyrit</li>
+          <li><strong>Pairi Daiza</strong> Brugelette</li>
+          <li><strong>Ezelfokkerij Château des Mottes</strong> Frasnes</li>
         </ul>
-      </div>
+      </article>
 
-      <div class="activiteit">
-        <div class="activiteit__kop">
-          <span class="kenmerk__icoon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>
-          </span>
-          <h3>Avontuur</h3>
-        </div>
-        <ul class="activiteit__lijst">
-          <li><strong>Escape room</strong> <span>tot 7 personen, te combineren met andere activiteiten &middot; <a href="https://www.mouflu.be" target="_blank" rel="noopener">mouflu.be</a></span></li>
-          <li><strong>Oldtimer-uitstappen</strong> <span><a href="https://www.vintagecarevents.be" target="_blank" rel="noopener">vintagecarevents.be</a></span></li>
-          <li><strong>The Outsider</strong> <span>Oudenaarde &middot; avonturenparcours</span></li>
-          <li><strong>Vespa's en tuktuks huren</strong> <span>IJsmolenhoeve &middot; <a href="https://www.ijsmolenhoeve.be" target="_blank" rel="noopener">ijsmolenhoeve.be</a></span></li>
-          <li><strong>Kajakken op de Dender</strong></li>
-          <li><strong>Paardrijden</strong> <span>Ferme équestre du Beaufaux</span></li>
+      <article class="uitje uitje--teal">
+        <span class="uitje__icoon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>
+        </span>
+        <h3>Avontuur</h3>
+        <ul>
+          <li><strong>Escape room</strong> tot 7 personen &middot; <a href="https://www.mouflu.be" target="_blank" rel="noopener">mouflu.be</a></li>
+          <li><strong>Kajakken</strong> op de Dender</li>
+          <li><strong>Vespa of tuktuk huren</strong> IJsmolenhoeve</li>
+          <li><strong>Paardrijden</strong> Ferme équestre du Beaufaux</li>
         </ul>
-      </div>
+      </article>
 
-      <div class="activiteit">
-        <div class="activiteit__kop">
-          <span class="kenmerk__icoon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M3 21h18M4 18h16M12 3l9 5H3zM4 10h16M6 10v8M10 10v8M14 10v8M18 10v8"/></svg>
-          </span>
-          <h3>Musea en brouwerijen</h3>
-        </div>
-        <ul class="activiteit__lijst">
-          <li><strong>Brasserie des Légendes</strong> <span>Ellezelles &middot; brouwerijbezoek</span></li>
-          <li><strong>Écomusée du Pays des Collines</strong> <span>La Hamaide</span></li>
-          <li><strong>Hôpital Notre-Dame à la Rose</strong> <span>Lessines &middot; middeleeuwse feesten in het eerste weekend van september</span></li>
-          <li><strong>MUST textielmuseum</strong> <span>Ronse</span></li>
+      <article class="uitje uitje--creme">
+        <span class="uitje__icoon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 21h18M4 18h16M12 3l9 5H3zM4 10h16M6 10v8M10 10v8M14 10v8M18 10v8"/></svg>
+        </span>
+        <h3>Musea en bier</h3>
+        <ul>
+          <li><strong>Brasserie des Légendes</strong> brouwerijbezoek</li>
+          <li><strong>Écomusée du Pays des Collines</strong> La Hamaide</li>
+          <li><strong>Hôpital Notre-Dame à la Rose</strong> Lessines</li>
         </ul>
-      </div>
+      </article>
 
-      <div class="activiteit">
-        <div class="activiteit__kop">
-          <span class="kenmerk__icoon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 11v10h14V11M10 21v-5h4v5"/></svg>
-          </span>
-          <h3>Steden en markten</h3>
-        </div>
-        <ul class="activiteit__lijst">
-          <li><strong>Ronse</strong> <span>markt op woensdag en zaterdag, 'Wandelen met smaak' (via toerisme), De Passage, art-decowandeling (3,5 km), Selfplay escape game</span></li>
-          <li><strong>Ath</strong> <span>markt op donderdag</span></li>
-          <li><strong>Geraardsbergen</strong> <span>rommelmarkt op zaterdag, september en oktober</span></li>
-          <li><strong>Doornik en Belœil</strong> <span>een dagje uit</span></li>
+      <article class="uitje uitje--creme">
+        <span class="uitje__icoon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 11v10h14V11M10 21v-5h4v5"/></svg>
+        </span>
+        <h3>Markten</h3>
+        <ul>
+          <li><strong>Ronse</strong> woensdag en zaterdag</li>
+          <li><strong>Ath</strong> donderdag</li>
+          <li><strong>Geraardsbergen</strong> rommelmarkt, zaterdag in sept. en okt.</li>
         </ul>
-      </div>
+      </article>
+
+      <article class="uitje uitje--donker">
+        <span class="uitje__icoon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7 3v18M5 3v5a2 2 0 0 0 4 0V3M17 21V3c-2 0-3 2.5-3 6v3h3"/></svg>
+        </span>
+        <h3>Uit eten</h3>
+        <ul>
+          <li><strong>Les Frères Louise</strong> Ellezelles</li>
+          <li><strong>Le Terroir Gourmand</strong> Ellezelles</li>
+          <li><strong>The Backyard</strong> Ronse &middot; tapas</li>
+          <li><strong>Le Temps Perdu</strong> Ronse</li>
+        </ul>
+      </article>
+
+      <article class="uitje uitje--teal">
+        <span class="uitje__icoon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 7h10v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M16 10h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2M6 7a2.5 2.5 0 0 1 2-4 3 3 0 0 1 5 0 2.5 2.5 0 0 1 3 4M9.5 11v6M12.5 11v6"/></svg>
+        </span>
+        <h3>Iets drinken</h3>
+        <ul>
+          <li><strong>Moulin du Mouflu</strong> Ellezelles</li>
+          <li><strong>Les Jardins de la Grange</strong> Ellezelles</li>
+          <li><strong>Le Bier Circus</strong> Frasnes &middot; zondag</li>
+        </ul>
+      </article>
 
     </div>
   </section>
 
-  <!-- ============ 4. WANDELEN EN FIETSEN ============ -->
-  <section class="section section--grey">
-    <div class="container activiteiten">
-
-      <div class="activiteit">
-        <div class="activiteit__kop">
-          <span class="kenmerk__icoon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 3v18M8 21h8M5 6h11l2.5 2L16 10H5zM19 13H8l-2.5 2L8 17h11z"/></svg>
-          </span>
-          <h3>Wandelroutes</h3>
-        </div>
-        <ul class="routes">
-          <li><span>Sentier de l'Étrange, Ellezelles</span><span>5,4 of 10 km</span></li>
-          <li><span>Kluisbos, Kluisbergen</span><span>6,3 km</span></li>
-          <li><span>Bizar Kunstroute, Zarlardinge</span><span>9 km</span></li>
-          <li><span>Muziekbos, Ronse</span><span>9,7 km</span></li>
-          <li><span>Weerwolfroute, Flobecq</span><span>12 km</span></li>
-          <li><span>Kabouterroute, Flobecq</span><span>14,2 km</span></li>
-        </ul>
+  <!-- ============ 4. WANDELEN EN FIETSEN (foto + kilometers) ============ -->
+  <section class="section routesband">
+    <div class="container routesband__grid">
+      <div class="routesband__media">
+        <img loading="lazy" decoding="async" src="images/streek/bezienswaardigheden-vlaamse-ardennen_358_xl.jpg" alt="Glooiende weiden in de Vlaamse Ardennen">
       </div>
+      <div class="routesband__body">
+        <h2>Wandelen en fietsen</h2>
 
-      <div class="activiteit">
-        <div class="activiteit__kop">
-          <span class="kenmerk__icoon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-7h6l2 7M10 9l2.5 7H6M14.5 6H17l-1 3"/></svg>
-          </span>
-          <h3>Fietsroutes</h3>
-        </div>
-        <ul class="routes">
-          <li><span>De Gavers</span><span>13,1 km</span></li>
-          <li><span>Ronse</span><span>38 km</span></li>
-          <li><span>Brakel</span><span>42,3 km</span></li>
-          <li><span>Geraardsbergen</span><span>42,8 km</span></li>
-          <li><span>Bidon-route</span><span>43 km</span></li>
-          <li><span>Ath</span><span>47,6 km</span></li>
-          <li><span>Over de muur en de taalgrens</span><span>65,8 km</span></li>
-          <li><span>Ninove – Vlaamse Ardennen (koers)</span><span>108,6 km</span></li>
-          <li><span>Ronde van Vlaanderen, rode lus</span><span>115,8 km</span></li>
+        <h3>Wandelen</h3>
+        <ul class="km">
+          <li><span class="km__getal">5,4<small>km</small></span><span class="km__naam">Sentier de l'Étrange</span></li>
+          <li><span class="km__getal">6,3<small>km</small></span><span class="km__naam">Kluisbos</span></li>
+          <li><span class="km__getal">9,7<small>km</small></span><span class="km__naam">Muziekbos</span></li>
+          <li><span class="km__getal">12<small>km</small></span><span class="km__naam">Weerwolfroute</span></li>
         </ul>
-        <p class="activiteit__tip">Tip: schipperscafé <strong>Het Bruggenhuis</strong> aan de Dender in
-           Overboelare is een ideaal vertrekpunt; de Bidon- en Ath-route komen er voorbij.
-           Alle routes op <a href="https://www.routes.be" target="_blank" rel="noopener">routes.be</a>.</p>
-      </div>
 
+        <h3>Fietsen</h3>
+        <ul class="km">
+          <li><span class="km__getal">13<small>km</small></span><span class="km__naam">De Gavers</span></li>
+          <li><span class="km__getal">38<small>km</small></span><span class="km__naam">Ronse</span></li>
+          <li><span class="km__getal">43<small>km</small></span><span class="km__naam">Bidon-route</span></li>
+          <li><span class="km__getal">116<small>km</small></span><span class="km__naam">Ronde van Vlaanderen</span></li>
+        </ul>
+
+        <p class="routesband__tip">Alle routes vindt u op <a href="https://www.routes.be" target="_blank" rel="noopener">routes.be</a>.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ 5. ETEN EN DRINKEN ============ -->
-  <section class="section">
-    <div class="container activiteiten">
-
-      <div class="activiteit">
-        <div class="activiteit__kop">
-          <span class="kenmerk__icoon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M6 7h10v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M16 10h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2M6 7a2.5 2.5 0 0 1 2-4 3 3 0 0 1 5 0 2.5 2.5 0 0 1 3 4M9.5 11v6M12.5 11v6"/></svg>
-          </span>
-          <h3>Iets drinken</h3>
-        </div>
-        <ul class="activiteit__lijst">
-          <li><strong>Moulin du Mouflu</strong> <span>Ellezelles</span></li>
-          <li><strong>Les Jardins de la Grange</strong> <span>Ellezelles</span></li>
-          <li><strong>Brasserie des Légendes</strong> <span>Ellezelles en Ath</span></li>
-          <li><strong>Le Bier Circus</strong> <span>Frasnes-lez-Anvaing &middot; ambachtelijke Belgische bieren, zondag 14u00–20u00</span></li>
-          <li><strong>Barbier</strong> <span>Geraardsbergen</span></li>
-          <li><strong>The Backyard</strong> <span>Ronse</span></li>
-        </ul>
-      </div>
-
-      <div class="activiteit">
-        <div class="activiteit__kop">
-          <span class="kenmerk__icoon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M7 3v18M5 3v5a2 2 0 0 0 4 0V3M17 21V3c-2 0-3 2.5-3 6v3h3"/></svg>
-          </span>
-          <h3>Uit eten</h3>
-        </div>
-        <ul class="activiteit__lijst">
-          <li><strong>Ellezelles</strong> <span>Moulin du Mouflu, Brasserie des Légendes, Les Frères Louise, Le Terroir Gourmand</span></li>
-          <li><strong>Ronse</strong> <span>La Différence, L'Amuse, Maison D, Le Temps Perdu (anders dan anders), The Backyard (tapas)</span></li>
-          <li><strong>Geraardsbergen</strong> <span>André Bistro, Atelier Gist, Grof Zout, en in Zarlardinge Sanseveria en Bar Il Padrino</span></li>
-          <li><strong>Brakel</strong> <span>De Vijf Seizoenen, La Granja 4 Hoeve</span></li>
-          <li><strong>In de buurt</strong> <span>Le Vieux Château (Flobecq), Paul Pierre (Maarkedal), De Fazant (Kluisbergen), Trolls &amp; Bush (Pipaix)</span></li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ 6. SLOT-CTA ============ -->
+  <!-- ============ 5. SLOT-CTA ============ -->
   <section class="cta">
     <div class="container cta__grid">
       <div class="cta__body">
