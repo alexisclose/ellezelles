@@ -571,7 +571,7 @@ p{margin:0 0 1.1em}
 /* algemeen blok 'Badkamer en wc' onder de kamers */
 .kamers__gedeeld{
   display:grid;grid-template-columns:1fr 2fr;align-items:center;
-  margin-top:var(--gap);background:var(--grey);
+  background:var(--grey);
 }
 .kamers__gedeeld .kamer__tekst{padding:28px 36px}
 .kamers__gedeeld .kamer__lijst li{font-size:1rem}
