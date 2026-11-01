@@ -537,6 +537,8 @@ p{margin:0 0 1.1em}
 .gallery[data-galerij] a{cursor:zoom-in}
 
 /* ---- De slaapkamers, kamer per kamer (Ons huis) ---- */
+.kamers .section__title{margin-bottom:.4em}
+.kamers__intro{text-align:center;margin:0 0 2em}
 .kamers__raster{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
 .kamer{display:flex;flex-direction:column;background:var(--grey)}
 .kamer__fotos{position:relative;display:grid;gap:6px}
