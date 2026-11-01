@@ -755,6 +755,7 @@ p{margin:0 0 1.1em}
   width:100%;
 }
 .veld textarea{min-height:170px;resize:vertical}
+.veld textarea.veld__kort{min-height:110px}
 .veld input:focus,.veld textarea:focus{outline:none;border-color:var(--teal)}
 .veld input:user-invalid,.veld textarea:user-invalid{border-color:#b4472f}
 

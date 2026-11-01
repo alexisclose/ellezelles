@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- LETTERTYPE KOPPEN — zie css/style.css, blok 1b. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..500&family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=37">
+<link rel="stylesheet" href="css/style.css?v=38">
 </head>
 <body>
 
@@ -183,7 +183,7 @@
               <input id="gasten" name="gasten" type="number" min="1" inputmode="numeric">
             </div>
             <div class="veld">
-              <label for="telefoon">Telefoon</label>
+              <label for="telefoon">Telefoon of gsm</label>
               <input id="telefoon" name="telefoon" type="tel" autocomplete="tel">
             </div>
             <p class="veld--breed veldhint">Laat de data leeg voor een algemene vraag.</p>
@@ -203,6 +203,23 @@
             </div>
 
             <div class="veld veld--breed">
+              <label for="straat">Straat en huisnummer</label>
+              <input id="straat" name="straat" type="text" autocomplete="street-address">
+            </div>
+            <div class="veld">
+              <label for="postcode">Postcode</label>
+              <input id="postcode" name="postcode" type="text" autocomplete="postal-code">
+            </div>
+            <div class="veld">
+              <label for="gemeente">Gemeente</label>
+              <input id="gemeente" name="gemeente" type="text" autocomplete="address-level2">
+            </div>
+            <div class="veld veld--breed">
+              <label for="land">Land</label>
+              <input id="land" name="land" type="text" autocomplete="country-name">
+            </div>
+
+            <div class="veld veld--breed">
               <label for="onderwerp">Onderwerp <span class="verplicht" aria-hidden="true">*</span></label>
               <input id="onderwerp" name="onderwerp" type="text" required>
             </div>
@@ -210,6 +227,11 @@
             <div class="veld veld--breed">
               <label for="bericht">Bericht <span class="verplicht" aria-hidden="true">*</span></label>
               <textarea id="bericht" name="bericht" rows="7" required></textarea>
+            </div>
+
+            <div class="veld veld--breed">
+              <label for="bijkomend">Bijkomende informatie</label>
+              <textarea id="bijkomend" name="bijkomend" rows="4" class="veld__kort"></textarea>
             </div>
           </div>
 
