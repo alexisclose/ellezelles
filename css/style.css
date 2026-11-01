@@ -567,8 +567,13 @@ p{margin:0 0 1.1em}
   border-left:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(-45deg);
 }
 .tarieven__lijst--nee li::before{width:12px;height:2px;border-radius:0;top:.75em;left:2px;background:var(--text-soft)}
+.tarieven__regels{margin-top:48px;padding-top:48px;border-top:1px solid var(--border)}
+.tarieven__regels h3{font-size:1.35rem;margin:0 0 .8em}
+.tarieven__regels .tarieven__lijst{columns:2;column-gap:clamp(32px,5vw,64px)}
+.tarieven__regels li{break-inside:avoid}
 @media (max-width:760px){
   .tarieven__info{grid-template-columns:1fr}
+  .tarieven__regels .tarieven__lijst{columns:1}
 }
 @media (max-width:600px){
   .tarieven__tabel th,
