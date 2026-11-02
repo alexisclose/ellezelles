@@ -216,6 +216,14 @@ p{margin:0 0 1.1em}
 .header.is-stuck .burger span{background:var(--text)}
 .header.is-stuck .logo__mark{color:var(--teal)}
 
+/* logo als afbeelding: licht boven de hero, donker op de witte header */
+.logo__img{display:block;height:58px;width:auto}
+.logo__img--donker,
+.header.is-stuck .logo__img--licht{display:none}
+.header.is-stuck .logo__img--donker{display:block}
+.footer__merk{margin-bottom:48px}
+.footer__merk img{display:block;height:64px;width:auto}
+
 .logo{display:flex;align-items:center;gap:10px;color:#fff}
 .logo__mark{font-size:1.5rem;color:var(--gold);line-height:1}
 .logo__text{display:flex;flex-direction:column;line-height:1.1}
@@ -1042,6 +1050,8 @@ p{margin:0 0 1.1em}
 
   .section__head{flex-direction:column;align-items:flex-start;gap:10px}
   .logo__text strong{font-size:.95rem}
+  .logo__img{height:40px}
+  .footer__merk img{height:52px}
   .header__actions .btn{display:none}   /* staat als item in het mobiele menu */
 
   /* footer: twee linkkolommen naast elkaar, contact en nieuwsbrief eronder */

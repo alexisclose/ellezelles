@@ -16,7 +16,9 @@
 <!-- ==> ADOBE FONTS: plak hier de regel uit je Adobe-project en zet in
          css/style.css de variabele --font-head op "recoleta".
      <link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css"> -->
-<link rel="stylesheet" href="css/style.css?v=43">
+<link rel="icon" type="image/png" sizes="32x32" href="images/logo/favicon-32.png">
+<link rel="apple-touch-icon" href="images/logo/favicon-180.png">
+<link rel="stylesheet" href="css/style.css?v=44">
 </head>
 <body>
 
@@ -36,12 +38,10 @@
 <header class="header" id="header">
   <div class="header__inner">
 
+    <!-- logo: licht boven de foto, donker zodra de header wit wordt -->
     <a class="logo" href="index.html">
-      <span class="logo__mark">&#10022;</span>
-      <span class="logo__text">
-        <strong>Vakantiewoning [Naam]</strong>
-        <em>Ellezelles</em>
-      </span>
+      <img class="logo__img logo__img--licht" src="images/logo/logo-licht.png" width="785" height="150" alt="Maison l'Amitié">
+      <img class="logo__img logo__img--donker" src="images/logo/logo-donker.png" width="785" height="150" alt="" aria-hidden="true">
     </a>
 
     <nav class="nav" id="nav" aria-label="Hoofdnavigatie">
@@ -236,6 +236,9 @@
 
 <!-- ============ 9. FOOTER ============ -->
 <footer class="footer">
+  <div class="container footer__merk">
+    <img src="images/logo/logo-licht.png" width="785" height="150" alt="Maison l'Amitié" loading="lazy" decoding="async">
+  </div>
   <div class="container footer__grid">
 
     <nav class="footer__col">
