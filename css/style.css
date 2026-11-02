@@ -31,7 +31,7 @@
   --pad: 24px;            /* horizontale marge van .container */
   --gap: 30px;
   --header-h: 84px;
-  --topbar-h: 34px;
+  --topbar-h: 0px;   /* aanbiedingenbalk verwijderd; zet terug op 34px als die terugkomt */
 
   --ease: cubic-bezier(.4,0,.2,1);
 }
@@ -166,30 +166,6 @@ p{margin:0 0 1.1em}
 }
 .link-arrow::after{content:" \2192"}
 .link-arrow:hover{opacity:.65}
-
-/* ---------- 5. Aanbiedingenbalk ---------- */
-.topbar{
-  height:var(--topbar-h);
-  background:var(--dark);
-  color:var(--cream);
-  overflow:hidden;
-  position:relative;
-  z-index:60;
-}
-.topbar__track{
-  display:flex;gap:48px;align-items:center;height:100%;
-  white-space:nowrap;
-  padding-left:100%;
-  animation:ticker 34s linear infinite;
-  font-size:.8125rem;letter-spacing:.03em;
-}
-.topbar__track a{border-bottom:1px solid transparent}
-.topbar__track a:hover{border-color:var(--gold)}
-.topbar:hover .topbar__track{animation-play-state:paused}
-@keyframes ticker{to{transform:translateX(-100%)}}
-@media (prefers-reduced-motion:reduce){
-  .topbar__track{animation:none;padding-left:0;justify-content:center;overflow-x:auto}
-}
 
 /* ---------- 6. Header ---------- */
 .header{
