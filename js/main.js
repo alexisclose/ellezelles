@@ -1,4 +1,4 @@
-/* Vakantiewoning [Naam] — homepage-interacties
+/* Maison l’Amitié — homepage-interacties
    Geen frameworks, geen build-stap. */
 
 (function () {
