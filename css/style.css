@@ -945,6 +945,10 @@ p{margin:0 0 1.1em}
   .nav__list{gap:18px}
   .nav__list > li > a{font-size:.8125rem}
 }
+/* breed logo + volledig menu: net boven de omslag naar het mobiele menu krap */
+@media (max-width:1200px){
+  .logo__img{height:42px}
+}
 
 /* Zodra de 4 kaarten niet meer naast elkaar passen, wordt het een carousel.
    Kaartbreedte en tussenruimte zijn overgenomen van de referentiesite
