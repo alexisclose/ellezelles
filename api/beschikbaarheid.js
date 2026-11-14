@@ -72,7 +72,12 @@ async function haalToken(email, sleutel) {
   try {
     ruw = crypto.createSign('RSA-SHA256').update(kop + '.' + inhoud).sign(sleutel, 'base64');
   } catch (e) {
-    throw fout('sleutel', 0, '{"error":"GOOGLE_PRIVATE_KEY is geen geldige privésleutel"}');
+    // alleen de vorm van de waarde melden, nooit de inhoud
+    const ruwe = process.env.GOOGLE_PRIVATE_KEY || '';
+    const vorm = 'lengte ' + ruwe.length +
+      ', BEGIN ' + (/-----BEGIN [A-Z ]*PRIVATE KEY-----/.test(ruwe) ? 'ja' : 'nee') +
+      ', END ' + (/-----END [A-Z ]*PRIVATE KEY-----/.test(ruwe) ? 'ja' : 'nee');
+    throw fout('sleutel', 0, JSON.stringify({ error: 'GOOGLE_PRIVATE_KEY is geen geldige privésleutel (' + vorm + ')' }));
   }
   const handtekening = ruw
     .replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
