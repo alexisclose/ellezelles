@@ -150,27 +150,16 @@
   }
 
   /* ---- 6. Beschikbaarheidskalender (reserveren.html) ----
-     De bezette dagen komen uit een openbare Google Agenda. Eenmalig instellen:
-       1. Maak in Google Agenda een aparte agenda 'Vakantiewoning – bezetting'.
-       2. Instellingen van die agenda > Toegangsrechten: 'Openbaar maken' met
-          'Alleen beschikbaarheid weergeven (details verbergen)'. Zo zijn
-          namen van gasten nooit zichtbaar.
-       3. Instellingen > Agenda integreren: kopieer de 'Agenda-ID' naar
-          KALENDER_ID hieronder.
-       4. console.cloud.google.com: maak een project, zet de 'Google Calendar
-          API' aan en maak een API-sleutel. Beperk die sleutel tot die API en
-          tot het domein van de site (plus localhost om te testen). Zet hem
-          in API_SLEUTEL.
-     Een evenement over de hele dag = bezette nachten. De einddatum van een
-     Google-evenement is exclusief, dus de vertrekdag blijft vrij als
-     aankomstdag voor de volgende gast. Een evenement met uren blokkeert de
-     nachten tussen begin- en einddag; korte afspraken binnen één dag tellen
-     niet mee.
+     De data komen van /api/beschikbaarheid (api/beschikbaarheid.js, met de
+     uitleg om in te stellen). Die leest de Google Agenda van de eigenaar en
+     geeft alleen nachten terug: { bezet: [{van, tot}], optie: [{van, tot}] }
+     met 'tot' exclusief (de vertrekdag blijft vrij voor de volgende gast).
+       bezet = bevestigd (Pistache) -> niet te kiezen
+       optie = nog niet bevestigd (Banaan) -> wel te kiezen, met een opmerking
      Gasten kunnen in de kalender een periode kiezen; die komt dan in het
      aanvraagformulier terecht (blok 5 verstuurt het).
      Testen met voorbeelddata: reserveren.html?demo#beschikbaarheid */
-  var KALENDER_ID = '0bd0051528690141163417424b4dbadb28cd04c4e81ae253a1d54d7367d19a77@group.calendar.google.com';
-  var API_SLEUTEL = 'AIzaSyBerFelafUnLEY4gSKVvVKJcROyyHVw0Bs';
+  var BRON = '/api/beschikbaarheid';
   var MAANDEN_VOORUIT = 12;
 
   var kalender = document.getElementById('kalender');
@@ -178,7 +167,8 @@
     var maandenEl = document.getElementById('kalendermaanden');
     var kalMelding = document.getElementById('kalendermelding');
     var pijlen = kalender.querySelectorAll('.kalender__pijl');
-    var bezet = {};          // { 'JJJJ-MM-DD': true }
+    var bezet = {};          // { 'JJJJ-MM-DD': true } — bevestigd
+    var optie = {};          // { 'JJJJ-MM-DD': true } — in optie
     var verschuiving = 0;    // aantal maanden vooruit gebladerd
     var breed = window.matchMedia('(min-width: 760px)');
 
@@ -194,27 +184,24 @@
       var p = tekst.split('-');
       return new Date(+p[0], +p[1] - 1, +p[2]);
     }
-    function markeer(van, tot) {  // tot is exclusief
-      for (var d = new Date(van); d < tot; d.setDate(d.getDate() + 1)) {
-        bezet[sleutel(d)] = true;
-      }
-    }
-    function verwerk(items) {
-      items.forEach(function (ev) {
-        if (!ev.start || !ev.end) return;
-        if (ev.start.date) {
-          markeer(leesDatum(ev.start.date), leesDatum(ev.end.date));
-        } else if (ev.start.dateTime && ev.end.dateTime) {
-          // evenement met uren (bv. vr 16:00 – zo 10:00): de nachten van de
-          // aankomstdag tot de vertrekdag zijn bezet. Een afspraak binnen één
-          // dag (tandarts, etentje) blokkeert dus niets — handig omdat de
-          // agenda ook een persoonlijke agenda kan zijn.
-          var van = new Date(ev.start.dateTime);
-          var tot = new Date(ev.end.dateTime);
-          markeer(new Date(van.getFullYear(), van.getMonth(), van.getDate()),
-                  new Date(tot.getFullYear(), tot.getMonth(), tot.getDate()));
+    function markeer(lijst, doel) {  // [{van, tot}] met tot exclusief
+      (lijst || []).forEach(function (p) {
+        if (!p || !p.van || !p.tot) return;
+        for (var d = leesDatum(p.van), tot = leesDatum(p.tot); d < tot; d.setDate(d.getDate() + 1)) {
+          doel[sleutel(d)] = true;
         }
       });
+    }
+    function verwerk(data) {
+      markeer(data.bezet, bezet);
+      markeer(data.optie, optie);
+    }
+    function isOptie(d) { var s = sleutel(d); return !!optie[s] && !bezet[s]; }
+    function periodeInOptie(van, tot) {
+      for (var d = new Date(van); d < tot; d.setDate(d.getDate() + 1)) {
+        if (isOptie(d)) return true;
+      }
+      return false;
     }
 
     /* Keuze van de gast, zoals bij Airbnb: eerst aankomst, dan vertrek.
@@ -282,7 +269,11 @@
       if (a && v) {
         var n = aantalNachten(a, v);
         keuzetekst.innerHTML = '<strong>' + kort(a) + ' &rarr; ' + kort(v) + '</strong> &middot; ' +
-          n + (n === 1 ? ' nacht' : ' nachten');
+          n + (n === 1 ? ' nacht' : ' nachten') +
+          (periodeInOptie(a, v)
+            ? '<br><small>Let op: (een deel van) deze periode staat in optie voor een andere gast. ' +
+              'Vraag gerust aan: valt die optie weg, dan laten we het u meteen weten.</small>'
+            : '');
       } else if (a) {
         keuzetekst.innerHTML = 'Aankomst <strong>' + kort(a) + '</strong> &mdash; kies nu uw vertrekdag.';
       } else {
@@ -338,14 +329,15 @@
         var voorbij = d < vandaag;
         var isBezet = !voorbij && bezet[s];
         var klikbaar = kiesbaar(d);
-        var klassen = [voorbij ? 'is-voorbij' : (isBezet ? 'is-bezet' : 'is-vrij')];
+        var inOptie = !voorbij && !isBezet && isOptie(d);
+        var klassen = [voorbij ? 'is-voorbij' : (isBezet ? 'is-bezet' : (inOptie ? 'is-optie' : 'is-vrij'))];
         var rol = '';
         if (keuze.aankomst && s === sleutel(keuze.aankomst)) { klassen.push('is-aankomst'); rol = ' — aankomst'; }
         if (keuze.vertrek && s === sleutel(keuze.vertrek)) { klassen.push('is-vertrek'); rol = ' — vertrek'; }
         if (keuze.vertrek && d > keuze.aankomst && d < keuze.vertrek) klassen.push('is-binnen');
         if (!voorbij && !isBezet && !klikbaar) klassen.push('is-uit');
         var label = d.toLocaleDateString('nl-BE', { day: 'numeric', month: 'long' }) +
-          (voorbij ? '' : (isBezet ? ' — bezet' : ' — vrij')) + rol;
+          (voorbij ? '' : (isBezet ? ' — bezet' : (inOptie ? ' — in optie' : ' — vrij'))) + rol;
 
         if ((leeg + n - 1) % 7 === 0 && n > 1) html += '</tr><tr>';
         html += '<td class="' + klassen.join(' ') + '">' + (klikbaar
@@ -436,32 +428,25 @@
     }
 
     if (/[?&]demo\b/.test(location.search)) {
-      // voorbeeldboekingen om lokaal te testen (de API-sleutel werkt
-      // alleen op ellezelles.netlify.app)
+      // voorbeelddata om lokaal te testen (de functie draait alleen op Vercel)
       var dag = function (plus) {
         var d = new Date(vandaag); d.setDate(d.getDate() + plus); return sleutel(d);
       };
-      klaar([
-        { start: { date: dag(3) },  end: { date: dag(6) } },
-        { start: { date: dag(12) }, end: { date: dag(19) } },
-        { start: { date: dag(26) }, end: { date: dag(35) } },
-        // met uren: 2 nachten bezet; korte afspraak: niets bezet
-        { start: { dateTime: dag(40) + 'T16:00:00' }, end: { dateTime: dag(42) + 'T10:00:00' } },
-        { start: { dateTime: dag(45) + 'T10:00:00' }, end: { dateTime: dag(45) + 'T11:00:00' } }
-      ]);
-    } else if (!KALENDER_ID || !API_SLEUTEL) {
-      toonFout();
+      klaar({
+        bezet: [
+          { van: dag(3), tot: dag(6) },
+          { van: dag(12), tot: dag(19) },
+          { van: dag(26), tot: dag(35) }
+        ],
+        optie: [
+          { van: dag(8), tot: dag(11) },
+          { van: dag(40), tot: dag(44) }
+        ]
+      });
     } else {
-      var tot = new Date(vandaag.getFullYear(), vandaag.getMonth() + MAANDEN_VOORUIT, 1);
-      var url = 'https://www.googleapis.com/calendar/v3/calendars/' +
-        encodeURIComponent(KALENDER_ID) + '/events' +
-        '?key=' + encodeURIComponent(API_SLEUTEL) +
-        '&timeMin=' + encodeURIComponent(vandaag.toISOString()) +
-        '&timeMax=' + encodeURIComponent(tot.toISOString()) +
-        '&singleEvents=true&orderBy=startTime&maxResults=2500';
-      fetch(url)
+      fetch(BRON)
         .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function (data) { klaar(data.items || []); })
+        .then(klaar)
         .catch(toonFout);
     }
   }
