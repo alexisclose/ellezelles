@@ -40,6 +40,18 @@ const KLEUR_OPTIE = (process.env.KLEUR_OPTIE || '5').split(',').map(s => s.trim(
 const MAANDEN_VOORUIT = 13;
 const TIJDZONE = 'Europe/Brussels';
 
+// Fout met alleen niet-geheime info: welke stap, Google-status en korte reden
+function fout(stap, status, tekst) {
+  let reden = '';
+  try {
+    const j = JSON.parse(tekst);
+    reden = j.error_description || j.error && (j.error.errors && j.error.errors[0] && j.error.errors[0].reason || j.error.status || j.error) || '';
+  } catch (e) { /* geen JSON */ }
+  const f = new Error(stap + ' ' + status + ' ' + tekst);
+  f.info = { stap, status, reden: String(reden).slice(0, 120) };
+  return f;
+}
+
 function base64url(input) {
   return Buffer.from(input).toString('base64')
     .replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
@@ -56,8 +68,13 @@ async function haalToken(email, sleutel) {
     iat: nu,
     exp: nu + 3600
   }));
-  const handtekening = crypto.createSign('RSA-SHA256')
-    .update(kop + '.' + inhoud).sign(sleutel, 'base64')
+  let ruw;
+  try {
+    ruw = crypto.createSign('RSA-SHA256').update(kop + '.' + inhoud).sign(sleutel, 'base64');
+  } catch (e) {
+    throw fout('sleutel', 0, '{"error":"GOOGLE_PRIVATE_KEY is geen geldige privésleutel"}');
+  }
+  const handtekening = ruw
     .replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
 
   const r = await fetch('https://oauth2.googleapis.com/token', {
@@ -68,7 +85,7 @@ async function haalToken(email, sleutel) {
       assertion: kop + '.' + inhoud + '.' + handtekening
     })
   });
-  if (!r.ok) throw new Error('token ' + r.status + ' ' + await r.text());
+  if (!r.ok) throw fout('inloggen', r.status, await r.text());
   return (await r.json()).access_token;
 }
 
@@ -86,7 +103,7 @@ async function haalEvenementen(token, kalenderId, van, tot) {
         ...(pagina ? { pageToken: pagina } : {})
       });
     const r = await fetch(url, { headers: { Authorization: 'Bearer ' + token } });
-    if (!r.ok) throw new Error('agenda ' + r.status + ' ' + await r.text());
+    if (!r.ok) throw fout('agenda', r.status, await r.text());
     const data = await r.json();
     items.push(...(data.items || []));
     pagina = data.nextPageToken || '';
@@ -140,7 +157,9 @@ function verdeel(items) {
 
 module.exports = async function handler(req, res) {
   const email = process.env.GOOGLE_CLIENT_EMAIL;
-  const sleutel = (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n');
+  // ook goed als de sleutel met aanhalingstekens of \n-tekens geplakt is
+  const sleutel = (process.env.GOOGLE_PRIVATE_KEY || '').trim()
+    .replace(/^"+|"+,?$/g, '').replace(/\\n/g, '\n');
   const kalenderId = process.env.KALENDER_ID;
 
   if (!email || !sleutel || !kalenderId) {
@@ -168,7 +187,7 @@ module.exports = async function handler(req, res) {
   } catch (e) {
     console.error('beschikbaarheid:', e.message);
     res.setHeader('Cache-Control', 'no-store');
-    return res.status(502).json({ fout: 'agenda niet bereikbaar' });
+    return res.status(502).json(Object.assign({ fout: 'agenda niet bereikbaar' }, e.info || {}));
   }
 };
 
