@@ -104,12 +104,13 @@ async function haalEvenementen(token, kalenderId, van, tot) {
         timeMax: tot.toISOString(),
         singleEvents: 'true',
         maxResults: '2500',
-        fields: 'nextPageToken,items(start,end,colorId,status)',
+        fields: 'accessRole,nextPageToken,items(start,end,colorId,status)',
         ...(pagina ? { pageToken: pagina } : {})
       });
     const r = await fetch(url, { headers: { Authorization: 'Bearer ' + token } });
     if (!r.ok) throw fout('agenda', r.status, await r.text());
     const data = await r.json();
+    items.toegang = data.accessRole;
     items.push(...(data.items || []));
     pagina = data.nextPageToken || '';
   } while (pagina);
@@ -202,9 +203,20 @@ module.exports = async function handler(req, res) {
     const token = await haalToken(email, sleutel);
     const items = await haalEvenementen(token, kalenderId, van, tot);
 
+    const antwoord = verdeel(items);
+    // ?controle: toegangsniveau en aantallen per kleurnummer (geen titels of data)
+    if (req.query && 'controle' in req.query) {
+      const kleuren = {};
+      for (const ev of items) {
+        const k = ev.colorId || 'geen';
+        kleuren[k] = (kleuren[k] || 0) + 1;
+      }
+      res.setHeader('Cache-Control', 'no-store');
+      return res.status(200).json(Object.assign({ toegang: items.toegang, gelezen: items.length, kleuren }, antwoord));
+    }
     // 5 minuten bewaren op Vercel, zodat Google niet bij elk bezoek gevraagd wordt
     res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
-    return res.status(200).json(verdeel(items));
+    return res.status(200).json(antwoord);
   } catch (e) {
     console.error('beschikbaarheid:', e.message);
     res.setHeader('Cache-Control', 'no-store');
