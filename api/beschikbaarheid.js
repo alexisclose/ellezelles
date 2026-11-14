@@ -144,8 +144,13 @@ module.exports = async function handler(req, res) {
   const kalenderId = process.env.KALENDER_ID;
 
   if (!email || !sleutel || !kalenderId) {
+    // alleen de NAMEN van ontbrekende instellingen, nooit waarden
+    const ontbreekt = [];
+    if (!email) ontbreekt.push('GOOGLE_CLIENT_EMAIL');
+    if (!sleutel) ontbreekt.push('GOOGLE_PRIVATE_KEY');
+    if (!kalenderId) ontbreekt.push('KALENDER_ID');
     res.setHeader('Cache-Control', 'no-store');
-    return res.status(503).json({ fout: 'niet ingesteld' });
+    return res.status(503).json({ fout: 'niet ingesteld', ontbreekt });
   }
 
   try {
