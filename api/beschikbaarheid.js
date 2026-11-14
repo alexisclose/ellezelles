@@ -155,11 +155,21 @@ function verdeel(items) {
   return { bezet, optie };
 }
 
+/* De sleutel netjes opbouwen, hoe hij ook in Vercel geplakt is: met of
+   zonder aanhalingstekens, met \n-tekens, echte regeleinden, spaties of
+   alles op één regel. Alleen de code tussen BEGIN en END telt. */
+function herstelSleutel(ruw) {
+  const tekst = ruw.replace(/\\n/g, '\n');
+  const m = tekst.match(/-----BEGIN ([A-Z ]*PRIVATE KEY)-----([\s\S]*?)-----END \1-----/);
+  if (!m) return tekst.trim();
+  const code = m[2].replace(/\\r|[^A-Za-z0-9+/=]/g, '');
+  return '-----BEGIN ' + m[1] + '-----\n' + code.match(/.{1,64}/g).join('\n') +
+    '\n-----END ' + m[1] + '-----\n';
+}
+
 module.exports = async function handler(req, res) {
   const email = process.env.GOOGLE_CLIENT_EMAIL;
-  // ook goed als de sleutel met aanhalingstekens of \n-tekens geplakt is
-  const sleutel = (process.env.GOOGLE_PRIVATE_KEY || '').trim()
-    .replace(/^"+|"+,?$/g, '').replace(/\\n/g, '\n');
+  const sleutel = herstelSleutel(process.env.GOOGLE_PRIVATE_KEY || '');
   const kalenderId = process.env.KALENDER_ID;
 
   if (!email || !sleutel || !kalenderId) {
