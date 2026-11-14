@@ -3,7 +3,7 @@
    Leest de persoonlijke Google Agenda van de eigenaar en geeft ALLEEN data
    terug, nooit titels, namen of andere afspraken. De kleur van een
    evenement beslist:
-     Pistache (groen)  = bevestigde reservering  -> 'bezet'
+     Salie (lichtgroen) = bevestigde reservering  -> 'bezet'
      Banaan  (geel)    = optie, nog niet bevestigd -> 'optie'
      elke andere kleur = persoonlijk, wordt genegeerd
    Een evenement zonder eigen kleur (de standaardkleur van de agenda) telt
@@ -18,8 +18,10 @@
      2. De eigenaar opent in Google Agenda de instellingen van haar agenda >
         'Delen met specifieke personen' > voegt het e-mailadres van het
         serviceaccount toe (staat in het JSON-bestand bij "client_email",
-        eindigt op .iam.gserviceaccount.com) met 'Alle details van
-        afspraken bekijken'.
+        eindigt op .iam.gserviceaccount.com) met 'Wijzigingen aanbrengen in
+        afspraken'. Met 'Alle details bekijken' stuurt Google de kleuren NIET
+        mee. De functie vraagt zelf alleen leestoegang, dus ze wijzigt nooit
+        iets in de agenda.
      3. Vercel > project > Settings > Environment Variables:
           GOOGLE_CLIENT_EMAIL  = "client_email" uit het JSON-bestand
           GOOGLE_PRIVATE_KEY   = "private_key" uit het JSON-bestand (volledig,
@@ -29,7 +31,11 @@
         Daarna opnieuw deployen.
      Optioneel, als een kleur toch een ander nummer blijkt te hebben:
           KLEUR_BEVESTIGD (standaard 2) en KLEUR_OPTIE (standaard 5).
-        Google nummert de 11 evenementkleuren van 1 t/m 11; Banaan is 5. */
+        Google nummert de 11 evenementkleuren van 1 t/m 11: Salie is 2,
+        Banaan is 5. Let op: 'Pistache' is een kleur van een héle agenda,
+        geen evenementkleur; een evenement in de standaardkleur telt niet.
+     Controleren: /api/beschikbaarheid?controle toont het toegangsniveau
+     (moet 'writer' zijn) en hoeveel evenementen per kleurnummer. */
 
 'use strict';
 

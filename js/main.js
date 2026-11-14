@@ -154,7 +154,7 @@
      uitleg om in te stellen). Die leest de Google Agenda van de eigenaar en
      geeft alleen nachten terug: { bezet: [{van, tot}], optie: [{van, tot}] }
      met 'tot' exclusief (de vertrekdag blijft vrij voor de volgende gast).
-       bezet = bevestigd (Pistache) -> niet te kiezen
+       bezet = bevestigd (Salie) -> niet te kiezen
        optie = nog niet bevestigd (Banaan) -> wel te kiezen, met een opmerking
      Gasten kunnen in de kalender een periode kiezen; die komt dan in het
      aanvraagformulier terecht (blok 5 verstuurt het).
