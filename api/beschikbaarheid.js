@@ -166,7 +166,13 @@ function verdeel(items) {
 function herstelSleutel(ruw) {
   const tekst = ruw.replace(/\\n/g, '\n');
   const m = tekst.match(/-----BEGIN ([A-Z ]*PRIVATE KEY)-----([\s\S]*?)-----END \1-----/);
-  if (!m) return tekst.trim();
+  if (!m) {
+    // zonder BEGIN/END-regels geplakt: alleen de code zelf; die aanvullen
+    const code = tekst.replace(/^\s*"+|"+,?\s*$/g, '').replace(/[^A-Za-z0-9+/=]/g, '');
+    if (code.length < 500) return tekst.trim();
+    return '-----BEGIN PRIVATE KEY-----\n' + code.match(/.{1,64}/g).join('\n') +
+      '\n-----END PRIVATE KEY-----\n';
+  }
   const code = m[2].replace(/\\r|[^A-Za-z0-9+/=]/g, '');
   return '-----BEGIN ' + m[1] + '-----\n' + code.match(/.{1,64}/g).join('\n') +
     '\n-----END ' + m[1] + '-----\n';
