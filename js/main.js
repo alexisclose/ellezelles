@@ -163,7 +163,9 @@
           in API_SLEUTEL.
      Een evenement over de hele dag = bezette nachten. De einddatum van een
      Google-evenement is exclusief, dus de vertrekdag blijft vrij als
-     aankomstdag voor de volgende gast.
+     aankomstdag voor de volgende gast. Een evenement met uren blokkeert de
+     nachten tussen begin- en einddag; korte afspraken binnen één dag tellen
+     niet mee.
      Gasten kunnen in de kalender een periode kiezen; die komt dan in het
      aanvraagformulier terecht (blok 5 verstuurt het).
      Testen met voorbeelddata: reserveren.html?demo#beschikbaarheid */
@@ -202,11 +204,15 @@
         if (!ev.start || !ev.end) return;
         if (ev.start.date) {
           markeer(leesDatum(ev.start.date), leesDatum(ev.end.date));
-        } else {
-          // evenement met uren: elke dag die het raakt telt als bezet
+        } else if (ev.start.dateTime && ev.end.dateTime) {
+          // evenement met uren (bv. vr 16:00 – zo 10:00): de nachten van de
+          // aankomstdag tot de vertrekdag zijn bezet. Een afspraak binnen één
+          // dag (tandarts, etentje) blokkeert dus niets — handig omdat de
+          // agenda ook een persoonlijke agenda kan zijn.
           var van = new Date(ev.start.dateTime);
-          van = new Date(van.getFullYear(), van.getMonth(), van.getDate());
-          markeer(van, new Date(ev.end.dateTime));
+          var tot = new Date(ev.end.dateTime);
+          markeer(new Date(van.getFullYear(), van.getMonth(), van.getDate()),
+                  new Date(tot.getFullYear(), tot.getMonth(), tot.getDate()));
         }
       });
     }
@@ -438,7 +444,10 @@
       klaar([
         { start: { date: dag(3) },  end: { date: dag(6) } },
         { start: { date: dag(12) }, end: { date: dag(19) } },
-        { start: { date: dag(26) }, end: { date: dag(35) } }
+        { start: { date: dag(26) }, end: { date: dag(35) } },
+        // met uren: 2 nachten bezet; korte afspraak: niets bezet
+        { start: { dateTime: dag(40) + 'T16:00:00' }, end: { dateTime: dag(42) + 'T10:00:00' } },
+        { start: { dateTime: dag(45) + 'T10:00:00' }, end: { dateTime: dag(45) + 'T11:00:00' } }
       ]);
     } else if (!KALENDER_ID || !API_SLEUTEL) {
       toonFout();
